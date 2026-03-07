@@ -91,18 +91,23 @@ class KlineData(BaseModel):
 
 class PositionRecommendation(BaseModel):
     """Position recommendation based on risk preference and capital"""
-    action: Literal["buy", "sell", "hold"] = Field(..., description="Recommended action")
-    amount: float = Field(..., description="Recommended amount in currency")
-    shares: int = Field(..., description="Recommended shares (rounded to 100)")
-    percentage: float = Field(..., description="Percentage of total capital")
-    stop_loss_price: float = Field(..., description="Stop loss price")
-    take_profit_price: float = Field(..., description="Take profit price")
-    risk_amount: float = Field(..., description="Risk amount if stop loss triggered")
-    risk_percentage: float = Field(..., description="Risk percentage of total capital")
-    max_position: float = Field(..., description="Maximum position allowed")
+    action: Literal["buy", "sell", "hold"] = Field(..., description="Recommended action: buy(加仓), sell(减仓), hold(持有不动)")
+    amount: float = Field(..., description="Recommended transaction amount in currency (positive=buy, negative=sell)")
+    percentage: float = Field(..., description="Target position as percentage of total capital")
+    stop_loss_price: float = Field(..., description="Suggested stop loss price")
+    take_profit_price: float = Field(..., description="Suggested take profit price")
+    risk_amount: float = Field(..., description="Potential risk amount")
+    risk_percentage: float = Field(..., description="Risk as percentage of total capital")
+    max_position: float = Field(..., description="Maximum allowed position")
     current_position: float = Field(..., description="Current position value")
     target_position: float = Field(..., description="Target position value")
-    reason: str = Field(..., description="Reason for recommendation")
+    # 量化依据
+    signal_score: float = Field(..., description="综合信号得分 (-1 to 1)")
+    trend_direction: str = Field(..., description="趋势方向: up/down/sideways")
+    trend_strength: float = Field(..., description="趋势强度 (0-1)")
+    support_level: float = Field(..., description="支撑位价格")
+    resistance_level: float = Field(..., description="阻力位价格")
+    reason: str = Field(..., description="Detailed reasoning for recommendation")
 
 
 class AnalysisItem(BaseModel):

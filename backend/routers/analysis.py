@@ -317,7 +317,13 @@ def calculate_position_recommendation(
     risk_preference: str,
     indicators: Indicators
 ) -> PositionRecommendation:
-    """Calculate position recommendation based on signal, capital, and risk preference."""
+    """Calculate position recommendation based on signal, capital, and risk preference.
+
+    基金交易特点：
+    - 不需要计算股数，只给出交易金额
+    - 策略包括：加仓(buy)、减仓(sell)、持有不动(hold)
+    - 持有不动需要量化依据支撑
+    """
 
     config = RISK_CONFIG.get(risk_preference, RISK_CONFIG["neutral"])
 
@@ -327,73 +333,162 @@ def calculate_position_recommendation(
     # 最大持仓金额
     max_position = total_capital * config["max_position_pct"]
 
-    # 根据信号强度和类型决定操作
+    # 信号得分 (-1 到 1)
     signal_type = signal.signal_type
     signal_strength = signal.strength
 
-    # 计算目标仓位
+    # 计算综合信号得分
+    signal_score = 0.0
     if signal_type == "buy":
-        # 买入信号：根据信号强度计算目标仓位
-        target_pct = config["single_trade_pct"] * signal_strength + current_position_pct
-        target_pct = min(target_pct, config["max_position_pct"])  # 不超过最大仓位
-        action = "buy"
+        signal_score = signal_strength
     elif signal_type == "sell":
-        # 卖出信号：减少仓位
-        sell_pct = config["single_trade_pct"] * signal_strength
-        target_pct = max(0, current_position_pct - sell_pct)
-        action = "sell" if current_position_pct > 0.05 else "hold"
+        signal_score = -signal_strength
+
+    # 判断趋势方向和强度
+    ma5_val = indicators.ma5.value
+    ma10_val = indicators.ma10.value
+    ma20_val = indicators.ma20.value
+    ma60_val = indicators.ma60.value
+
+    # 趋势判断：基于均线排列
+    if ma5_val > ma10_val > ma20_val > ma60_val:
+        trend_direction = "up"
+        trend_strength = min((ma5_val - ma60_val) / ma60_val, 1.0)
+    elif ma5_val < ma10_val < ma20_val < ma60_val:
+        trend_direction = "down"
+        trend_strength = min((ma60_val - ma5_val) / ma60_val, 1.0)
     else:
-        # 持有信号：维持当前仓位
-        target_pct = current_position_pct
+        trend_direction = "sideways"
+        trend_strength = 0.3  # 震荡趋势默认强度
+
+    # 计算支撑位和阻力位
+    support_level = indicators.bollinger.lower
+    resistance_level = indicators.bollinger.upper
+
+    # 根据趋势调整支撑阻力
+    if trend_direction == "up":
+        support_level = max(support_level, ma20_val)
+    elif trend_direction == "down":
+        resistance_level = min(resistance_level, ma20_val)
+
+    # 初始化
+    action = "hold"
+    target_pct = current_position_pct
+    amount = 0.0
+
+    # 检查当前仓位是否超过限制
+    position_over_limit = holding_amount > max_position
+
+    # ========== 核心决策逻辑 ==========
+
+    # 计算综合得分 (结合信号得分和趋势)
+    combined_score = signal_score * 0.6
+    if trend_direction == "up":
+        combined_score += trend_strength * 0.3
+    elif trend_direction == "down":
+        combined_score -= trend_strength * 0.3
+
+    # 加入RSI修正
+    rsi = indicators.rsi.value
+    if rsi < 30:
+        combined_score += 0.2  # 超卖加分
+    elif rsi > 70:
+        combined_score -= 0.2  # 超买减分
+
+    # 加入MACD修正
+    if indicators.macd.histogram.value > 0:
+        combined_score += 0.1
+    else:
+        combined_score -= 0.1
+
+    # 限制得分范围
+    combined_score = max(-1.0, min(1.0, combined_score))
+
+    # 决策阈值（根据风险偏好调整）
+    buy_threshold = config["signal_threshold"]
+    sell_threshold = -config["signal_threshold"]
+
+    # 特殊情况：仓位超限必须减仓
+    if position_over_limit:
+        action = "sell"
+        target_pct = config["max_position_pct"]
+    elif combined_score >= buy_threshold:
+        # 买入信号：检查是否有空间
+        if current_position_pct < config["max_position_pct"]:
+            add_pct = config["single_trade_pct"] * abs(combined_score)
+            target_pct = min(current_position_pct + add_pct, config["max_position_pct"])
+            action = "buy"
+        else:
+            action = "hold"
+            target_pct = current_position_pct
+    elif combined_score <= sell_threshold:
+        # 卖出信号
+        if holding_amount > 0:
+            sell_pct = config["single_trade_pct"] * abs(combined_score)
+            target_pct = max(0, current_position_pct - sell_pct)
+            action = "sell"
+        else:
+            action = "hold"
+            target_pct = 0
+    else:
+        # 持有不动：有量化依据支撑
         action = "hold"
+        target_pct = current_position_pct
 
     # 计算目标持仓金额
     target_position = total_capital * target_pct
 
-    # 计算操作金额
-    amount_diff = target_position - holding_amount
+    # 计算交易金额
     if action == "buy":
-        amount = min(abs(amount_diff), total_capital * config["single_trade_pct"])
+        amount = target_position - holding_amount
     elif action == "sell":
-        amount = min(abs(amount_diff), holding_amount)
+        amount = holding_amount - target_position
     else:
         amount = 0
-
-    # 计算股数（取整到100股）
-    shares = int(amount / current_price / 100) * 100
-    amount = shares * current_price  # 重新计算实际金额
 
     # 计算止损止盈价格
     stop_loss_price = round(current_price * (1 - config["stop_loss_pct"]), 3)
     take_profit_price = round(current_price * (1 + config["take_profit_pct"]), 3)
 
     # 计算风险金额
-    risk_amount = amount * config["stop_loss_pct"]
+    risk_amount = amount * config["stop_loss_pct"] if action == "buy" else 0
     risk_percentage = risk_amount / total_capital if total_capital > 0 else 0
 
-    # 构建操作理由
+    # ========== 构建操作理由 ==========
     reasons = []
-    if signal_type == "buy":
-        reasons.append(f"技术信号显示买入机会，信号强度{signal_strength*100:.0f}%")
-        if indicators.rsi.value < 30:
-            reasons.append("RSI处于超卖区域")
-        if indicators.macd.histogram.value > 0:
-            reasons.append("MACD动能转正")
-    elif signal_type == "sell":
-        reasons.append(f"技术信号显示卖出时机，信号强度{signal_strength*100:.0f}%")
-        if indicators.rsi.value > 70:
-            reasons.append("RSI处于超买区域")
-        if indicators.macd.histogram.value < 0:
-            reasons.append("MACD动能转负")
-    else:
-        reasons.append("技术信号中性，建议维持当前仓位")
 
-    reason = "；".join(reasons) if reasons else "基于综合分析的建议"
+    # 量化依据说明
+    reasons.append(f"综合得分{combined_score:.2f}(阈值±{buy_threshold})")
+    reasons.append(f"趋势:{trend_direction}(强度{trend_strength:.1%})")
+
+    if position_over_limit:
+        reasons.append(f"仓位{current_position_pct:.1%}超限{config['max_position_pct']:.0%}")
+
+    if action == "buy":
+        reasons.append(f"得分突破阈值，建议加仓")
+        if rsi < 30:
+            reasons.append("RSI超卖")
+        if indicators.macd.histogram.value > 0:
+            reasons.append("MACD多头")
+    elif action == "sell":
+        reasons.append(f"得分低于阈值，建议减仓")
+        if rsi > 70:
+            reasons.append("RSI超买")
+        if indicators.macd.histogram.value < 0:
+            reasons.append("MACD空头")
+    else:
+        # 持有不动的量化依据
+        reasons.append(f"得分在阈值内，持有不动")
+        if trend_direction == "sideways":
+            reasons.append("震荡行情观望")
+        if 0 < current_position_pct < config["max_position_pct"]:
+            reasons.append(f"仓位合理({current_position_pct:.1%})")
+
+    reason = "；".join(reasons)
 
     return PositionRecommendation(
         action=action,
         amount=round(amount, 2),
-        shares=shares,
         percentage=round(target_pct * 100, 1),
         stop_loss_price=stop_loss_price,
         take_profit_price=take_profit_price,
@@ -402,6 +497,11 @@ def calculate_position_recommendation(
         max_position=round(max_position, 2),
         current_position=round(holding_amount, 2),
         target_position=round(target_position, 2),
+        signal_score=round(combined_score, 2),
+        trend_direction=trend_direction,
+        trend_strength=round(trend_strength, 2),
+        support_level=round(support_level, 3),
+        resistance_level=round(resistance_level, 3),
         reason=reason
     )
 

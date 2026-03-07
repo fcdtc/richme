@@ -97,18 +97,23 @@ export interface Signal {
 
 // 仓位建议
 export interface PositionRecommendation {
-  action: 'buy' | 'sell' | 'hold'    // 操作类型
-  amount: number                      // 建议金额
-  shares: number                      // 建议股数
-  percentage: number                  // 占总资金比例
-  stop_loss_price: number             // 止损价
-  take_profit_price: number           // 止盈价
-  risk_amount: number                 // 风险金额
-  risk_percentage: number             // 风险比例
-  max_position: number                // 最大持仓金额
+  action: 'buy' | 'sell' | 'hold'    // 操作类型: buy加仓, sell减仓, hold持有不动
+  amount: number                      // 建议交易金额
+  percentage: number                  // 目标仓位占总资金比例
+  stop_loss_price: number             // 建议止损价
+  take_profit_price: number           // 建议止盈价
+  risk_amount: number                 // 潜在风险金额
+  risk_percentage: number             // 风险占总资金比例
+  max_position: number                // 最大允许持仓金额
   current_position: number            // 当前持仓金额
   target_position: number             // 目标持仓金额
-  reason: string                      // 操作理由
+  // 量化依据
+  signal_score: number                // 综合信号得分 (-1 to 1)
+  trend_direction: string             // 趋势方向: up/down/sideways
+  trend_strength: number              // 趋势强度 (0-1)
+  support_level: number               // 支撑位价格
+  resistance_level: number            // 阻力位价格
+  reason: string                      // 详细操作理由
 }
 
 // 分析项

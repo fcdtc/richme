@@ -2,7 +2,7 @@
   <el-card class="position-card" v-if="position">
     <template #header>
       <div class="card-header">
-        <span>仓位建议</span>
+        <span>交易策略建议</span>
         <el-tag :type="actionType" size="large">
           {{ actionText }}
         </el-tag>
@@ -20,23 +20,58 @@
           :closable="false"
         />
       </div>
+      <div class="action-section" v-else>
+        <el-alert
+          title="持有不动"
+          type="info"
+          :description="position.reason"
+          show-icon
+          :closable="false"
+        />
+      </div>
+
+      <!-- 量化依据 -->
+      <div class="quant-section">
+        <div class="quant-title">量化依据</div>
+        <el-row :gutter="15">
+          <el-col :span="6">
+            <div class="quant-item">
+              <div class="quant-label">综合得分</div>
+              <div class="quant-value" :class="scoreClass">
+                {{ position.signal_score > 0 ? '+' : '' }}{{ position.signal_score.toFixed(2) }}
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="quant-item">
+              <div class="quant-label">趋势方向</div>
+              <div class="quant-value" :class="trendClass">
+                {{ trendText }}
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="quant-item">
+              <div class="quant-label">趋势强度</div>
+              <div class="quant-value">
+                {{ (position.trend_strength * 100).toFixed(0) }}%
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div class="quant-item">
+              <div class="quant-label">交易金额</div>
+              <div class="quant-value amount">
+                ¥{{ position.amount.toLocaleString() }}
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
 
       <!-- 核心数据 -->
+      <el-divider />
       <el-row :gutter="20" class="core-data">
-        <el-col :span="6">
-          <div class="data-item">
-            <div class="data-label">建议金额</div>
-            <div class="data-value" :class="actionClass">
-              ¥{{ position.amount.toLocaleString() }}
-            </div>
-          </div>
-        </el-col>
-        <el-col :span="6">
-          <div class="data-item">
-            <div class="data-label">建议股数</div>
-            <div class="data-value">{{ position.shares.toLocaleString() }}股</div>
-          </div>
-        </el-col>
         <el-col :span="6">
           <div class="data-item">
             <div class="data-label">目标仓位</div>
@@ -45,24 +80,43 @@
         </el-col>
         <el-col :span="6">
           <div class="data-item">
-            <div class="data-label">风险比例</div>
-            <div class="data-value">{{ position.risk_percentage }}%</div>
+            <div class="data-label">当前持仓</div>
+            <div class="data-value">¥{{ position.current_position.toLocaleString() }}</div>
+          </div>
+        </el-col>
+        <el-col :span="6">
+          <div class="data-item">
+            <div class="data-label">目标持仓</div>
+            <div class="data-value">¥{{ position.target_position.toLocaleString() }}</div>
+          </div>
+        </el-col>
+        <el-col :span="6">
+          <div class="data-item">
+            <div class="data-label">最大持仓</div>
+            <div class="data-value">¥{{ position.max_position.toLocaleString() }}</div>
           </div>
         </el-col>
       </el-row>
 
-      <!-- 止损止盈 -->
+      <!-- 支撑阻力位 -->
       <el-divider />
       <div class="price-section">
         <el-row :gutter="20">
-          <el-col :span="12">
+          <el-col :span="8">
+            <div class="price-item support">
+              <div class="price-label">支撑位</div>
+              <div class="price-value">¥{{ position.support_level.toFixed(3) }}</div>
+              <div class="price-note">下跌保护参考</div>
+            </div>
+          </el-col>
+          <el-col :span="8">
             <div class="price-item stop-loss">
               <div class="price-label">止损价</div>
               <div class="price-value">¥{{ position.stop_loss_price.toFixed(3) }}</div>
-              <div class="price-note">风险金额: ¥{{ position.risk_amount.toLocaleString() }}</div>
+              <div class="price-note">风险: ¥{{ position.risk_amount.toLocaleString() }}</div>
             </div>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="8">
             <div class="price-item take-profit">
               <div class="price-label">止盈价</div>
               <div class="price-value">¥{{ position.take_profit_price.toFixed(3) }}</div>
@@ -90,15 +144,15 @@
         <div class="progress-legend">
           <span class="legend-item">
             <span class="legend-dot current"></span>
-            当前持仓: ¥{{ position.current_position.toLocaleString() }}
+            当前: {{ (position.current_position / maxCapital * 100).toFixed(1) }}%
           </span>
           <span class="legend-item">
             <span class="legend-dot target"></span>
-            目标持仓: ¥{{ position.target_position.toLocaleString() }}
+            目标: {{ position.percentage }}%
           </span>
           <span class="legend-item">
             <span class="legend-dot max"></span>
-            最大持仓: ¥{{ position.max_position.toLocaleString() }}
+            上限: {{ maxPositionPct }}%
           </span>
         </div>
       </div>
@@ -112,9 +166,12 @@ import type { PositionRecommendation } from '../types'
 
 interface Props {
   position: PositionRecommendation | null
+  maxCapital?: number
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  maxCapital: 100000
+})
 
 const actionType = computed(() => {
   if (!props.position) return 'info'
@@ -128,26 +185,51 @@ const actionType = computed(() => {
 const actionText = computed(() => {
   if (!props.position) return ''
   switch (props.position.action) {
-    case 'buy': return '建议买入'
-    case 'sell': return '建议卖出'
-    default: return '建议持有'
+    case 'buy': return '建议加仓'
+    case 'sell': return '建议减仓'
+    default: return '持有不动'
   }
 })
 
 const actionTitle = computed(() => {
   if (!props.position) return ''
-  const action = props.position.action === 'buy' ? '买入' : '卖出'
-  return `建议${action} ¥${props.position.amount.toLocaleString()} (${props.position.shares}股)`
+  const action = props.position.action === 'buy' ? '加仓' : '减仓'
+  return `建议${action} ¥${props.position.amount.toLocaleString()}`
 })
 
-const actionClass = computed(() => {
+const scoreClass = computed(() => {
   if (!props.position) return ''
-  return props.position.action === 'buy' ? 'text-success' : props.position.action === 'sell' ? 'text-warning' : ''
+  if (props.position.signal_score > 0.3) return 'score-bullish'
+  if (props.position.signal_score < -0.3) return 'score-bearish'
+  return 'score-neutral'
+})
+
+const trendText = computed(() => {
+  if (!props.position) return ''
+  switch (props.position.trend_direction) {
+    case 'up': return '上涨'
+    case 'down': return '下跌'
+    default: return '震荡'
+  }
+})
+
+const trendClass = computed(() => {
+  if (!props.position) return ''
+  switch (props.position.trend_direction) {
+    case 'up': return 'trend-up'
+    case 'down': return 'trend-down'
+    default: return 'trend-neutral'
+  }
 })
 
 const positionPercentage = computed(() => {
   if (!props.position || props.position.max_position === 0) return 0
-  return Math.round((props.position.target_position / props.position.max_position) * 100)
+  return Math.min(100, Math.round((props.position.target_position / props.position.max_position) * 100))
+})
+
+const maxPositionPct = computed(() => {
+  if (!props.position) return '50'
+  return ((props.position.max_position / props.maxCapital) * 100).toFixed(0)
 })
 
 const progressColor = computed(() => {
@@ -180,6 +262,64 @@ const progressColor = computed(() => {
   margin-bottom: 20px;
 }
 
+.quant-section {
+  margin-top: 15px;
+}
+
+.quant-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #606266;
+  margin-bottom: 12px;
+}
+
+.quant-item {
+  padding: 12px 10px;
+  background: #f5f7fa;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.quant-label {
+  font-size: 12px;
+  color: #909399;
+  margin-bottom: 6px;
+}
+
+.quant-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #303133;
+}
+
+.quant-value.amount {
+  color: #409eff;
+}
+
+.quant-value.score-bullish {
+  color: #67c23a;
+}
+
+.quant-value.score-bearish {
+  color: #f56c6c;
+}
+
+.quant-value.score-neutral {
+  color: #909399;
+}
+
+.quant-value.trend-up {
+  color: #67c23a;
+}
+
+.quant-value.trend-down {
+  color: #f56c6c;
+}
+
+.quant-value.trend-neutral {
+  color: #909399;
+}
+
 .core-data {
   text-align: center;
 }
@@ -197,17 +337,9 @@ const progressColor = computed(() => {
 }
 
 .data-value {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: #303133;
-}
-
-.data-value.text-success {
-  color: #67c23a;
-}
-
-.data-value.text-warning {
-  color: #e6a23c;
 }
 
 .price-section {
@@ -215,9 +347,14 @@ const progressColor = computed(() => {
 }
 
 .price-item {
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
   text-align: center;
+}
+
+.price-item.support {
+  background: linear-gradient(135deg, #f0f9eb 0%, #fff 100%);
+  border: 1px solid #e1f3d8;
 }
 
 .price-item.stop-loss {
@@ -237,8 +374,12 @@ const progressColor = computed(() => {
 }
 
 .price-value {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
+}
+
+.support .price-value {
+  color: #409eff;
 }
 
 .stop-loss .price-value {
@@ -252,7 +393,7 @@ const progressColor = computed(() => {
 .price-note {
   font-size: 12px;
   color: #909399;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .position-progress {
