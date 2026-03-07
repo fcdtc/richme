@@ -34,7 +34,6 @@ ETF_NAMES = {
 # 风险偏好配置
 RISK_CONFIG = {
     "conservative": {
-        "max_position_pct": 0.3,      # 最大仓位30%
         "single_trade_pct": 0.1,      # 单次交易10%
         "stop_loss_pct": 0.03,        # 止损3%
         "take_profit_pct": 0.06,      # 止盈6%
@@ -42,7 +41,6 @@ RISK_CONFIG = {
         "signal_threshold": 0.6,      # 信号阈值
     },
     "neutral": {
-        "max_position_pct": 0.5,      # 最大仓位50%
         "single_trade_pct": 0.2,      # 单次交易20%
         "stop_loss_pct": 0.05,        # 止损5%
         "take_profit_pct": 0.10,      # 止盈10%
@@ -50,7 +48,6 @@ RISK_CONFIG = {
         "signal_threshold": 0.4,      # 信号阈值
     },
     "aggressive": {
-        "max_position_pct": 0.8,      # 最大仓位80%
         "single_trade_pct": 0.3,      # 单次交易30%
         "stop_loss_pct": 0.08,        # 止损8%
         "take_profit_pct": 0.16,      # 止盈16%
@@ -330,9 +327,6 @@ def calculate_position_recommendation(
     # 当前持仓比例
     current_position_pct = holding_amount / total_capital if total_capital > 0 else 0
 
-    # 最大持仓金额
-    max_position = total_capital * config["max_position_pct"]
-
     # 信号得分 (-1 到 1)
     signal_type = signal.signal_type
     signal_strength = signal.strength
@@ -376,9 +370,6 @@ def calculate_position_recommendation(
     target_pct = current_position_pct
     amount = 0.0
 
-    # 检查当前仓位是否超过限制
-    position_over_limit = holding_amount > max_position
-
     # ========== 核心决策逻辑 ==========
 
     # 计算综合得分 (结合信号得分和趋势)
@@ -408,25 +399,21 @@ def calculate_position_recommendation(
     buy_threshold = config["signal_threshold"]
     sell_threshold = -config["signal_threshold"]
 
-    # 特殊情况：仓位超限必须减仓
-    if position_over_limit:
-        action = "sell"
-        target_pct = config["max_position_pct"]
-    elif combined_score >= buy_threshold:
-        # 买入信号：检查是否有空间
-        if current_position_pct < config["max_position_pct"]:
-            add_pct = config["single_trade_pct"] * abs(combined_score)
-            target_pct = min(current_position_pct + add_pct, config["max_position_pct"])
-            action = "buy"
-        else:
-            action = "hold"
-            target_pct = current_position_pct
+    # 根据信号得分决策
+    if combined_score >= buy_threshold:
+        # 买入信号
+        add_pct = config["single_trade_pct"] * abs(combined_score)
+        target_pct = current_position_pct + add_pct
+        action = "buy"
     elif combined_score <= sell_threshold:
         # 卖出信号
         if holding_amount > 0:
             sell_pct = config["single_trade_pct"] * abs(combined_score)
             target_pct = max(0, current_position_pct - sell_pct)
-            action = "sell"
+            if target_pct < current_position_pct:  # 只有确实要减仓时才设置sell
+                action = "sell"
+            else:
+                action = "hold"
         else:
             action = "hold"
             target_pct = 0
@@ -461,9 +448,6 @@ def calculate_position_recommendation(
     reasons.append(f"综合得分{combined_score:.2f}(阈值±{buy_threshold})")
     reasons.append(f"趋势:{trend_direction}(强度{trend_strength:.1%})")
 
-    if position_over_limit:
-        reasons.append(f"仓位{current_position_pct:.1%}超限{config['max_position_pct']:.0%}")
-
     if action == "buy":
         reasons.append(f"得分突破阈值，建议加仓")
         if rsi < 30:
@@ -481,8 +465,8 @@ def calculate_position_recommendation(
         reasons.append(f"得分在阈值内，持有不动")
         if trend_direction == "sideways":
             reasons.append("震荡行情观望")
-        if 0 < current_position_pct < config["max_position_pct"]:
-            reasons.append(f"仓位合理({current_position_pct:.1%})")
+        if current_position_pct > 0:
+            reasons.append(f"当前仓位{current_position_pct:.1%}")
 
     reason = "；".join(reasons)
 
@@ -494,7 +478,7 @@ def calculate_position_recommendation(
         take_profit_price=take_profit_price,
         risk_amount=round(risk_amount, 2),
         risk_percentage=round(risk_percentage * 100, 2),
-        max_position=round(max_position, 2),
+        max_position=round(total_capital, 2),  # 无仓位限制，显示总资金
         current_position=round(holding_amount, 2),
         target_position=round(target_position, 2),
         signal_score=round(combined_score, 2),

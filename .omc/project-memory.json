@@ -120,6 +120,12 @@
   },
   "hotPaths": [
     {
+      "path": "backend/routers/analysis.py",
+      "accessCount": 15,
+      "lastAccessed": 1772896102562,
+      "type": "file"
+    },
+    {
       "path": "frontend/src/types/index.ts",
       "accessCount": 4,
       "lastAccessed": 1772892519910,
@@ -129,12 +135,6 @@
       "path": "backend/models/schemas.py",
       "accessCount": 3,
       "lastAccessed": 1772892555689,
-      "type": "file"
-    },
-    {
-      "path": "backend/routers/analysis.py",
-      "accessCount": 3,
-      "lastAccessed": 1772892649939,
       "type": "file"
     },
     {
@@ -153,6 +153,18 @@
       "path": "frontend/src/components/InputForm.vue",
       "accessCount": 2,
       "lastAccessed": 1772892788952,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/PositionRecommendation.vue",
+      "accessCount": 2,
+      "lastAccessed": 1772895361997,
+      "type": "file"
+    },
+    {
+      "path": "config/settings.py",
+      "accessCount": 2,
+      "lastAccessed": 1772895362054,
       "type": "file"
     },
     {
@@ -192,12 +204,6 @@
       "type": "file"
     },
     {
-      "path": "config/settings.py",
-      "accessCount": 1,
-      "lastAccessed": 1772891823232,
-      "type": "file"
-    },
-    {
       "path": "frontend/package.json",
       "accessCount": 1,
       "lastAccessed": 1772892485181,
@@ -216,10 +222,16 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/components/PositionRecommendation.vue",
+      "path": "backend/services/signal.py",
       "accessCount": 1,
-      "lastAccessed": 1772892737884,
+      "lastAccessed": 1772895362122,
       "type": "file"
+    },
+    {
+      "path": "backend",
+      "accessCount": 1,
+      "lastAccessed": 1772896120593,
+      "type": "directory"
     }
   ],
   "userDirectives": []
