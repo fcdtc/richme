@@ -1,0 +1,202 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1772891469507,
+  "projectRoot": "/Users/congfei/github/richme",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "tests"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "backend": {
+      "path": "backend",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1772891469482,
+      "keyFiles": [
+        "__init__.py",
+        "main.py",
+        "requirements.txt"
+      ]
+    },
+    "config": {
+      "path": "config",
+      "purpose": "Configuration files",
+      "fileCount": 2,
+      "lastAccessed": 1772891469483,
+      "keyFiles": [
+        "__init__.py",
+        "settings.py"
+      ]
+    },
+    "data": {
+      "path": "data",
+      "purpose": "Data files",
+      "fileCount": 1,
+      "lastAccessed": 1772891469483,
+      "keyFiles": []
+    },
+    "frontend": {
+      "path": "frontend",
+      "purpose": null,
+      "fileCount": 7,
+      "lastAccessed": 1772891469484,
+      "keyFiles": [
+        "index.html",
+        "package-lock.json",
+        "package.json",
+        "tsconfig.json",
+        "tsconfig.node.json"
+      ]
+    },
+    "tests": {
+      "path": "tests",
+      "purpose": "Test files",
+      "fileCount": 0,
+      "lastAccessed": 1772891469485,
+      "keyFiles": []
+    },
+    "backend/models": {
+      "path": "backend/models",
+      "purpose": "Data models",
+      "fileCount": 2,
+      "lastAccessed": 1772891469486,
+      "keyFiles": [
+        "__init__.py",
+        "schemas.py"
+      ]
+    },
+    "backend/services": {
+      "path": "backend/services",
+      "purpose": "Business logic services",
+      "fileCount": 4,
+      "lastAccessed": 1772891469486,
+      "keyFiles": [
+        "__init__.py",
+        "fetcher.py",
+        "indicators.py"
+      ]
+    },
+    "frontend/node_modules": {
+      "path": "frontend/node_modules",
+      "purpose": "Dependencies",
+      "fileCount": 1,
+      "lastAccessed": 1772891469488,
+      "keyFiles": []
+    },
+    "frontend/src": {
+      "path": "frontend/src",
+      "purpose": "Source code",
+      "fileCount": 2,
+      "lastAccessed": 1772891469488,
+      "keyFiles": [
+        "App.vue",
+        "main.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "backend/models/schemas.py",
+      "accessCount": 2,
+      "lastAccessed": 1772891601064,
+      "type": "file"
+    },
+    {
+      "path": "backend/routers/analysis.py",
+      "accessCount": 2,
+      "lastAccessed": 1772891692001,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/indicators.py",
+      "accessCount": 2,
+      "lastAccessed": 1772891701489,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/types/index.ts",
+      "accessCount": 2,
+      "lastAccessed": 1772891799208,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/services/api.ts",
+      "accessCount": 1,
+      "lastAccessed": 1772891539050,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "accessCount": 1,
+      "lastAccessed": 1772891539166,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772891553064,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/IndicatorList.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772891553115,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/InputForm.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772891553178,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/ResultCard.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772891553244,
+      "type": "file"
+    },
+    {
+      "path": "backend/main.py",
+      "accessCount": 1,
+      "lastAccessed": 1772891816073,
+      "type": "file"
+    },
+    {
+      "path": "backend/requirements.txt",
+      "accessCount": 1,
+      "lastAccessed": 1772891823177,
+      "type": "file"
+    },
+    {
+      "path": "config/settings.py",
+      "accessCount": 1,
+      "lastAccessed": 1772891823232,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
