@@ -15,6 +15,8 @@ class AnalysisRequest(BaseModel):
     etf_code: str = Field(..., description="ETF code (e.g., 510300)")
     risk_preference: RiskPreferenceType = Field(default="neutral", description="Risk preference setting")
     use_cache: bool = Field(default=True, description="Whether to use cached data")
+    total_capital: Optional[float] = Field(default=100000, description="Total capital")
+    holding_amount: Optional[float] = Field(default=0, description="Current holding amount")
 
 
 class IndicatorValue(BaseModel):
@@ -64,6 +66,45 @@ class Signal(BaseModel):
     confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence level from 0 to 1")
 
 
+class KlineItem(BaseModel):
+    """Single K-line data item"""
+    date: str = Field(..., description="Date/time")
+    open: float = Field(..., description="Open price")
+    high: float = Field(..., description="High price")
+    low: float = Field(..., description="Low price")
+    close: float = Field(..., description="Close price")
+    volume: int = Field(..., description="Volume")
+    ma5: Optional[float] = Field(default=0, description="MA5")
+    ma10: Optional[float] = Field(default=0, description="MA10")
+    ma30: Optional[float] = Field(default=0, description="MA30")
+
+
+class KlineData(BaseModel):
+    """K-line data container"""
+    code: str = Field(..., description="ETF code")
+    period: str = Field(..., description="Period name")
+    count: int = Field(..., description="Number of items")
+    klines: List[KlineItem] = Field(default_factory=list, description="K-line items")
+    fetch_time: str = Field(default="", description="Fetch timestamp")
+    source: str = Field(default="", description="Data source")
+
+
+class PositionRecommendation(BaseModel):
+    """Position recommendation based on risk preference and capital"""
+    action: Literal["buy", "sell", "hold"] = Field(..., description="Recommended action")
+    amount: float = Field(..., description="Recommended amount in currency")
+    shares: int = Field(..., description="Recommended shares (rounded to 100)")
+    percentage: float = Field(..., description="Percentage of total capital")
+    stop_loss_price: float = Field(..., description="Stop loss price")
+    take_profit_price: float = Field(..., description="Take profit price")
+    risk_amount: float = Field(..., description="Risk amount if stop loss triggered")
+    risk_percentage: float = Field(..., description="Risk percentage of total capital")
+    max_position: float = Field(..., description="Maximum position allowed")
+    current_position: float = Field(..., description="Current position value")
+    target_position: float = Field(..., description="Target position value")
+    reason: str = Field(..., description="Reason for recommendation")
+
+
 class AnalysisItem(BaseModel):
     """Individual analysis item"""
     indicator: str = Field(..., description="Indicator name")
@@ -94,3 +135,5 @@ class AnalysisResponse(BaseModel):
         default_factory=lambda: DataQuality(completeness=0.9, reliability=0.85, recency=0.95),
         description="Data quality metrics"
     )
+    klines: Optional[KlineData] = Field(default=None, description="K-line data")
+    position: Optional[PositionRecommendation] = Field(default=None, description="Position recommendation")

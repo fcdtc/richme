@@ -24,7 +24,16 @@
               </el-result>
             </div>
             <div v-else-if="result">
+              <!-- 仓位建议 -->
+              <PositionRecommendation :position="result.position" />
+
+              <!-- K线图 -->
+              <KlineChart :klineData="result.klines" :currentPrice="result.current_price" />
+
+              <!-- 结果卡片 -->
               <ResultCard :data="result" />
+
+              <!-- 技术指标 -->
               <IndicatorList :data="result" />
             </div>
             <div v-else class="placeholder">
@@ -42,6 +51,8 @@ import { ref } from 'vue'
 import { Loading } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import InputForm from './components/InputForm.vue'
+import PositionRecommendation from './components/PositionRecommendation.vue'
+import KlineChart from './components/KlineChart.vue'
 import ResultCard from './components/ResultCard.vue'
 import IndicatorList from './components/IndicatorList.vue'
 import { analyzeETF } from './services/api'
@@ -66,7 +77,9 @@ const handleAnalyze = async (data: {
     const response = await analyzeETF({
       etf_code: data.etfCode,
       risk_preference: data.riskPreference,
-      use_cache: true
+      use_cache: true,
+      total_capital: data.totalCapital,
+      holding_amount: data.holdingAmount
     })
     result.value = response
     ElMessage.success('分析完成')

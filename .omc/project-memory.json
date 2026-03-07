@@ -120,15 +120,27 @@
   },
   "hotPaths": [
     {
+      "path": "frontend/src/types/index.ts",
+      "accessCount": 4,
+      "lastAccessed": 1772892519910,
+      "type": "file"
+    },
+    {
       "path": "backend/models/schemas.py",
-      "accessCount": 2,
-      "lastAccessed": 1772891601064,
+      "accessCount": 3,
+      "lastAccessed": 1772892555689,
       "type": "file"
     },
     {
       "path": "backend/routers/analysis.py",
-      "accessCount": 2,
-      "lastAccessed": 1772891692001,
+      "accessCount": 3,
+      "lastAccessed": 1772892649939,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "accessCount": 3,
+      "lastAccessed": 1772892812008,
       "type": "file"
     },
     {
@@ -138,9 +150,9 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/types/index.ts",
+      "path": "frontend/src/components/InputForm.vue",
       "accessCount": 2,
-      "lastAccessed": 1772891799208,
+      "lastAccessed": 1772892788952,
       "type": "file"
     },
     {
@@ -156,21 +168,9 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/App.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772891553064,
-      "type": "file"
-    },
-    {
       "path": "frontend/src/components/IndicatorList.vue",
       "accessCount": 1,
       "lastAccessed": 1772891553115,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/InputForm.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772891553178,
       "type": "file"
     },
     {
@@ -195,6 +195,30 @@
       "path": "config/settings.py",
       "accessCount": 1,
       "lastAccessed": 1772891823232,
+      "type": "file"
+    },
+    {
+      "path": "frontend/package.json",
+      "accessCount": 1,
+      "lastAccessed": 1772892485181,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/fetcher.py",
+      "accessCount": 1,
+      "lastAccessed": 1772892485232,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/KlineChart.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772892698197,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/PositionRecommendation.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772892737884,
       "type": "file"
     }
   ],

@@ -19,7 +19,7 @@
         <el-input-number
           v-model="formData.totalCapital"
           :min="0"
-          :step="1000"
+          :step="10000"
           :precision="2"
           style="width: 100%"
           placeholder="请输入总资金"
@@ -30,7 +30,7 @@
         <el-input-number
           v-model="formData.holdingAmount"
           :min="0"
-          :step="100"
+          :step="1000"
           :precision="2"
           style="width: 100%"
           placeholder="请输入持仓金额"
