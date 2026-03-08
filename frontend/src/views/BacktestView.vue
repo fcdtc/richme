@@ -43,6 +43,12 @@
               <!-- 绩效指标 -->
               <BacktestMetrics :metrics="result.metrics" />
 
+              <!-- K线图（带交易信号） -->
+              <KlineChart
+                :klineData="result.klines"
+                :signals="result.signals"
+              />
+
               <!-- 权益曲线图 -->
               <BacktestEquityChart
                 :equityCurve="result.equity_curve"
@@ -78,6 +84,7 @@ import BacktestMetrics from '../components/backtest/BacktestMetrics.vue'
 import BacktestEquityChart from '../components/backtest/BacktestEquityChart.vue'
 import BacktestDrawdownChart from '../components/backtest/BacktestDrawdownChart.vue'
 import BacktestTradeList from '../components/backtest/BacktestTradeList.vue'
+import KlineChart from '../components/KlineChart.vue'
 import { runBacktest } from '../services/api'
 import type { BacktestRequest, BacktestResponse } from '../types'
 

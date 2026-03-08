@@ -338,9 +338,14 @@ class StrategyEngine:
         self.mtf_analyzer = MultiTimeframeAnalyzer()
         self.configs = configs
 
-    def generate_signal(self, daily_data: pd.DataFrame, weekly_data: pd.DataFrame = None) -> Dict:
+    def generate_signal(self, daily_data: pd.DataFrame, weekly_data: pd.DataFrame = None, current_equity: float = None) -> Dict:
         """
         Generate complete trading signal.
+
+        Args:
+            daily_data: Daily OHLCV data
+            weekly_data: Weekly OHLCV data (optional)
+            current_equity: Current account equity for position sizing (defaults to initial_capital)
 
         Returns:
             Dict with:
@@ -355,6 +360,10 @@ class StrategyEngine:
         if weekly_data is None or weekly_data.empty:
             # Generate weekly from daily
             weekly_data = convert_to_weekly(daily_data)
+
+        # Use provided equity or fall back to initial capital
+        if current_equity is None:
+            current_equity = self.configs.get('initial_capital', 100000)
 
         # Analyze both strategies
         trend_result = self.trend_strategy.analyze(daily_data, self.configs['trend'])
@@ -396,7 +405,6 @@ class StrategyEngine:
         # Calculate position size if buy signal
         position_size = 0.0
         current_price = daily_data['close'].iloc[-1]
-        current_equity = self.configs.get('initial_capital', 100000)
 
         if signal_type == 'buy':
             position_size = self.position_sizer.calculate(

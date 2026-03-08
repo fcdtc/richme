@@ -65,7 +65,7 @@ class BacktestEngine:
             window_weekly = weekly_data[weekly_data['date'] <= current_bar['date']]
 
             # Generate signal
-            signal = self.strategy.generate_signal(window_data, window_weekly)
+            signal = self.strategy.generate_signal(window_data, window_weekly, current_equity=equity)
 
             # Log first few signals for debugging
             if i < min_window + 5 or signal['signal_type'] != 'hold':

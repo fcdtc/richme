@@ -205,6 +205,13 @@ export interface EquityPoint {
   drawdown: number
 }
 
+// 交易信号（图表用）
+export interface TradeSignal {
+  date: string
+  type: 'buy' | 'sell'
+  price: number
+}
+
 // 回测响应
 export interface BacktestResponse {
   etf_code: string
@@ -212,6 +219,8 @@ export interface BacktestResponse {
   metrics: BacktestMetrics
   equity_curve: EquityPoint[]
   trades: BacktestTrade[]
+  klines: KlineData | null
+  signals: TradeSignal[]
   strategy_params?: StrategyParams
   timestamp: string
 }

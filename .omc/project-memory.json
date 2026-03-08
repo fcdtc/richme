@@ -139,8 +139,8 @@
     },
     {
       "path": "frontend/src/types/index.ts",
-      "accessCount": 16,
-      "lastAccessed": 1772940611985,
+      "accessCount": 18,
+      "lastAccessed": 1772948390057,
       "type": "file"
     },
     {
@@ -150,9 +150,21 @@
       "type": "file"
     },
     {
+      "path": "backend/services/backtest.py",
+      "accessCount": 14,
+      "lastAccessed": 1772954939378,
+      "type": "file"
+    },
+    {
       "path": "backend/services/signal.py",
       "accessCount": 13,
       "lastAccessed": 1772941044714,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/strategy_engine.py",
+      "accessCount": 13,
+      "lastAccessed": 1772954933015,
       "type": "file"
     },
     {
@@ -174,12 +186,6 @@
       "type": "file"
     },
     {
-      "path": "backend/services/backtest.py",
-      "accessCount": 12,
-      "lastAccessed": 1772944346817,
-      "type": "file"
-    },
-    {
       "path": "backend/services/data_utils.py",
       "accessCount": 11,
       "lastAccessed": 1772944234713,
@@ -192,15 +198,15 @@
       "type": "file"
     },
     {
-      "path": "backend/services/strategy_engine.py",
-      "accessCount": 10,
-      "lastAccessed": 1772944224053,
+      "path": "backend/routers/backtest.py",
+      "accessCount": 11,
+      "lastAccessed": 1772948370730,
       "type": "file"
     },
     {
       "path": "frontend/src/components/KlineChart.vue",
-      "accessCount": 9,
-      "lastAccessed": 1772940533645,
+      "accessCount": 10,
+      "lastAccessed": 1772948282845,
       "type": "file"
     },
     {
@@ -222,16 +228,16 @@
       "type": "file"
     },
     {
-      "path": "backend/routers/backtest.py",
-      "accessCount": 8,
-      "lastAccessed": 1772947199104,
-      "type": "file"
-    },
-    {
       "path": "backend",
       "accessCount": 7,
       "lastAccessed": 1772941046003,
       "type": "directory"
+    },
+    {
+      "path": "frontend/src/views/BacktestView.vue",
+      "accessCount": 7,
+      "lastAccessed": 1772948425186,
+      "type": "file"
     },
     {
       "path": "config/settings.py",
@@ -246,6 +252,12 @@
       "type": "file"
     },
     {
+      "path": "backend/models/backtest_schemas.py",
+      "accessCount": 5,
+      "lastAccessed": 1772948336478,
+      "type": "file"
+    },
+    {
       "path": "backend/routers/data.py",
       "accessCount": 4,
       "lastAccessed": 1772940344743,
@@ -256,6 +268,12 @@
       "accessCount": 4,
       "lastAccessed": 1772940565857,
       "type": "file"
+    },
+    {
+      "path": "frontend/src",
+      "accessCount": 4,
+      "lastAccessed": 1772948276564,
+      "type": "directory"
     },
     {
       "path": "backend/requirements.txt",
@@ -274,12 +292,6 @@
       "accessCount": 3,
       "lastAccessed": 1772940528513,
       "type": "file"
-    },
-    {
-      "path": "frontend/src",
-      "accessCount": 3,
-      "lastAccessed": 1772940539151,
-      "type": "directory"
     },
     {
       "path": "frontend/src/components/ResultCard.vue",
@@ -306,15 +318,15 @@
       "type": "file"
     },
     {
-      "path": "backend/models/backtest_schemas.py",
+      "path": "frontend/src/views/DashboardView.vue",
       "accessCount": 2,
-      "lastAccessed": 1772944116006,
+      "lastAccessed": 1772948282897,
       "type": "file"
     },
     {
-      "path": "frontend/src/views/BacktestView.vue",
+      "path": "frontend/src/components/backtest/BacktestTradeList.vue",
       "accessCount": 2,
-      "lastAccessed": 1772945664263,
+      "lastAccessed": 1772948894882,
       "type": "file"
     },
     {
@@ -387,18 +399,6 @@
       "path": "frontend/src/components/backtest/BacktestDrawdownChart.vue",
       "accessCount": 1,
       "lastAccessed": 1772940506763,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/backtest/BacktestTradeList.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772940507328,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/views/DashboardView.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772940563341,
       "type": "file"
     },
     {

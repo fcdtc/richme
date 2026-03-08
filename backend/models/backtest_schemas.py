@@ -31,6 +31,36 @@ class BacktestTrade(BaseModel):
     signals: Optional[List[str]] = None
 
 
+class KlineItem(BaseModel):
+    """Single K-line data point"""
+    date: str
+    open: float
+    high: float
+    low: float
+    close: float
+    volume: float
+    ma5: Optional[float] = None
+    ma10: Optional[float] = None
+    ma30: Optional[float] = None
+
+
+class BacktestKlineData(BaseModel):
+    """K-line data for backtest display"""
+    code: str
+    period: str
+    count: int
+    klines: List[KlineItem]
+    fetch_time: str
+    source: str
+
+
+class TradeSignal(BaseModel):
+    """Trade signal for chart display"""
+    date: str
+    type: Literal['buy', 'sell']
+    price: float
+
+
 class BacktestMetrics(BaseModel):
     """Backtest performance metrics"""
     initial_capital: float
@@ -60,6 +90,8 @@ class BacktestResponse(BaseModel):
     metrics: BacktestMetrics
     equity_curve: List[EquityPoint]
     trades: List[BacktestTrade]
+    klines: Optional[BacktestKlineData] = None
+    signals: List[TradeSignal] = Field(default_factory=list)
     strategy_params: Optional[Dict] = None
     timestamp: str = Field(default_factory=lambda: datetime.now().isoformat())
 

@@ -5,7 +5,8 @@ import pandas as pd
 from fastapi import APIRouter, HTTPException
 from backend.models.backtest_schemas import (
     BacktestRequest, BacktestResponse, StrategyParams,
-    TrendFollowingConfig, BottomFishingConfig, KellyConfig, StopLossConfig
+    TrendFollowingConfig, BottomFishingConfig, KellyConfig, StopLossConfig,
+    BacktestKlineData, KlineItem, TradeSignal
 )
 from backend.services.backtest import BacktestEngine
 from backend.services.strategy_engine import StrategyEngine
@@ -115,12 +116,52 @@ async def run_backtest(request: BacktestRequest) -> BacktestResponse:
         )
         result = backtest_engine.run(df)
 
+        # Prepare K-line data for chart display
+        kline_items = []
+        for _, row in df.iterrows():
+            kline_items.append(KlineItem(
+                date=str(row['date']),
+                open=float(row['open']),
+                high=float(row['high']),
+                low=float(row['low']),
+                close=float(row['close']),
+                volume=float(row['volume']),
+                ma5=float(row.get('ma5', 0)) if 'ma5' in row else None,
+                ma10=float(row.get('ma10', 0)) if 'ma10' in row else None,
+                ma30=float(row.get('ma30', 0)) if 'ma30' in row else None
+            ))
+
+        backtest_kline_data = BacktestKlineData(
+            code=request.etf_code,
+            period=request.period,
+            count=len(kline_items),
+            klines=kline_items,
+            fetch_time=pd.Timestamp.now().isoformat(),
+            source='backtest'
+        )
+
+        # Extract trade signals for chart display
+        signals = []
+        for trade in result['trades']:
+            signals.append(TradeSignal(
+                date=trade['entry_date'],
+                type='buy',
+                price=trade['entry_price']
+            ))
+            signals.append(TradeSignal(
+                date=trade['exit_date'],
+                type='sell',
+                price=trade['exit_price']
+            ))
+
         return BacktestResponse(
             etf_code=request.etf_code,
             period=request.period,
             metrics=result['metrics'],
             equity_curve=result['equity_curve'],
             trades=result['trades'],
+            klines=backtest_kline_data,
+            signals=signals,
             strategy_params=params,
             timestamp=pd.Timestamp.now().isoformat()
         )
