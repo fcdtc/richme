@@ -294,9 +294,18 @@
           </div>
 
           <el-form-item>
-            <el-button type="primary" @click="handleResetParams" style="width: 100%">
-              重置为默认参数
-            </el-button>
+            <el-row :gutter="10" style="width: 100%">
+              <el-col :span="12">
+                <el-button type="success" @click="handleSaveParams" :loading="saving" style="width: 100%">
+                  保存方案
+                </el-button>
+              </el-col>
+              <el-col :span="12">
+                <el-button @click="handleResetParams" style="width: 100%">
+                  重置默认
+                </el-button>
+              </el-col>
+            </el-row>
           </el-form-item>
         </el-form>
       </div>
@@ -306,6 +315,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import type { BacktestRequest, StrategyParams } from '../../types'
 import { getStrategyParams, updateStrategyParams } from '../../services/api'
@@ -326,6 +336,7 @@ const emit = defineEmits<Emits>()
 
 const formRef = ref<FormInstance>()
 const showParams = ref(false)
+const saving = ref(false)
 
 const formData = reactive<BacktestRequest>({
   etfCode: '512400',
@@ -415,6 +426,19 @@ const handleResetParams = async () => {
     Object.assign(strategyParams, defaultParams)
   } catch (error) {
     console.error('Failed to reset params:', error)
+  }
+}
+
+const handleSaveParams = async () => {
+  saving.value = true
+  try {
+    await updateStrategyParams(strategyParams)
+    ElMessage.success('策略方案已保存')
+  } catch (error) {
+    console.error('Failed to save params:', error)
+    ElMessage.error('保存失败，请重试')
+  } finally {
+    saving.value = false
   }
 }
 

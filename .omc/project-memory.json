@@ -145,8 +145,8 @@
     },
     {
       "path": "frontend/src/services/api.ts",
-      "accessCount": 14,
-      "lastAccessed": 1772944241298,
+      "accessCount": 15,
+      "lastAccessed": 1772945674047,
       "type": "file"
     },
     {
@@ -186,6 +186,12 @@
       "type": "file"
     },
     {
+      "path": "frontend/src/components/backtest/BacktestForm.vue",
+      "accessCount": 11,
+      "lastAccessed": 1772947187333,
+      "type": "file"
+    },
+    {
       "path": "backend/services/strategy_engine.py",
       "accessCount": 10,
       "lastAccessed": 1772944224053,
@@ -213,6 +219,12 @@
       "path": "backend/services/fetcher.py",
       "accessCount": 8,
       "lastAccessed": 1772944045187,
+      "type": "file"
+    },
+    {
+      "path": "backend/routers/backtest.py",
+      "accessCount": 8,
+      "lastAccessed": 1772947199104,
       "type": "file"
     },
     {
@@ -270,12 +282,6 @@
       "type": "directory"
     },
     {
-      "path": "backend/routers/backtest.py",
-      "accessCount": 3,
-      "lastAccessed": 1772944033797,
-      "type": "file"
-    },
-    {
       "path": "frontend/src/components/ResultCard.vue",
       "accessCount": 2,
       "lastAccessed": 1772940334444,
@@ -303,6 +309,12 @@
       "path": "backend/models/backtest_schemas.py",
       "accessCount": 2,
       "lastAccessed": 1772944116006,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/views/BacktestView.vue",
+      "accessCount": 2,
+      "lastAccessed": 1772945664263,
       "type": "file"
     },
     {
@@ -360,12 +372,6 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/components/backtest/BacktestForm.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772940434883,
-      "type": "file"
-    },
-    {
       "path": "frontend/src/components/backtest/BacktestMetrics.vue",
       "accessCount": 1,
       "lastAccessed": 1772940435472,
@@ -387,12 +393,6 @@
       "path": "frontend/src/components/backtest/BacktestTradeList.vue",
       "accessCount": 1,
       "lastAccessed": 1772940507328,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/views/BacktestView.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772940522294,
       "type": "file"
     },
     {

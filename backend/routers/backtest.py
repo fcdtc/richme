@@ -1,4 +1,6 @@
 """Backtest router for ETF strategy testing."""
+import json
+from pathlib import Path
 import pandas as pd
 from fastapi import APIRouter, HTTPException
 from backend.models.backtest_schemas import (
@@ -14,6 +16,10 @@ router = APIRouter(prefix="/api", tags=["backtest"])
 # Initialize fetcher
 fetcher = MultiSourceFetcher()
 
+# Persistent storage path
+DATA_DIR = Path(__file__).parent.parent / "data"
+STRATEGY_PARAMS_FILE = DATA_DIR / "strategy_params.json"
+
 # Default strategy parameters
 DEFAULT_PARAMS = {
     'trend': TrendFollowingConfig().dict(),
@@ -22,14 +28,35 @@ DEFAULT_PARAMS = {
     'stop_loss': StopLossConfig().dict()
 }
 
-# Store custom params (in production, use database/session)
-custom_params = {}
+
+def _ensure_data_dir():
+    """Ensure data directory exists"""
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def _load_params_from_file() -> dict | None:
+    """Load strategy params from persistent file"""
+    if STRATEGY_PARAMS_FILE.exists():
+        try:
+            with open(STRATEGY_PARAMS_FILE, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, IOError):
+            return None
+    return None
+
+
+def _save_params_to_file(params: dict):
+    """Save strategy params to persistent file"""
+    _ensure_data_dir()
+    with open(STRATEGY_PARAMS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(params, f, ensure_ascii=False, indent=2)
 
 
 def get_strategy_params() -> dict:
-    """Get strategy parameters (custom or default)"""
-    if custom_params:
-        return custom_params
+    """Get strategy parameters (persistent or default)"""
+    saved_params = _load_params_from_file()
+    if saved_params:
+        return saved_params
     return DEFAULT_PARAMS
 
 
@@ -127,7 +154,7 @@ async def get_strategy_params_endpoint() -> StrategyParams:
 @router.post("/strategy/params")
 async def update_strategy_params(params: StrategyParams) -> StrategyParams:
     """
-    Update strategy parameters.
+    Update strategy parameters (persisted to file).
 
     Args:
         params: New strategy parameters
@@ -135,17 +162,17 @@ async def update_strategy_params(params: StrategyParams) -> StrategyParams:
     Returns:
         Updated strategy parameters
     """
-    global custom_params
-    custom_params = {
+    params_dict = {
         'trend': params.trend.dict(),
         'bottom': params.bottom.dict(),
         'kelly': params.kelly.dict(),
         'stop_loss': params.stop_loss.dict()
     }
+    _save_params_to_file(params_dict)
     return params
 
 
-@router.get("/strategy/params/reset")
+@router.delete("/strategy/params")
 async def reset_strategy_params() -> dict:
     """
     Reset strategy parameters to defaults.
@@ -153,6 +180,6 @@ async def reset_strategy_params() -> dict:
     Returns:
         Default strategy parameters
     """
-    global custom_params
-    custom_params = {}
+    if STRATEGY_PARAMS_FILE.exists():
+        STRATEGY_PARAMS_FILE.unlink()
     return DEFAULT_PARAMS
