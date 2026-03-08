@@ -121,8 +121,8 @@
   "hotPaths": [
     {
       "path": "backend/routers/analysis.py",
-      "accessCount": 33,
-      "lastAccessed": 1772956951780,
+      "accessCount": 34,
+      "lastAccessed": 1772975827977,
       "type": "file"
     },
     {
@@ -144,15 +144,21 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/services/api.ts",
-      "accessCount": 15,
-      "lastAccessed": 1772945674047,
+      "path": "backend/services/strategy_engine.py",
+      "accessCount": 16,
+      "lastAccessed": 1772975812962,
       "type": "file"
     },
     {
-      "path": "backend/services/strategy_engine.py",
+      "path": "frontend/src/components/KlineChart.vue",
+      "accessCount": 16,
+      "lastAccessed": 1772976500586,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/services/api.ts",
       "accessCount": 15,
-      "lastAccessed": 1772956937474,
+      "lastAccessed": 1772945674047,
       "type": "file"
     },
     {
@@ -186,15 +192,15 @@
       "type": "directory"
     },
     {
-      "path": "backend/services/data_utils.py",
-      "accessCount": 11,
-      "lastAccessed": 1772944234713,
+      "path": "frontend/src/components/backtest/BacktestForm.vue",
+      "accessCount": 12,
+      "lastAccessed": 1772976553302,
       "type": "file"
     },
     {
-      "path": "frontend/src/components/backtest/BacktestForm.vue",
+      "path": "backend/services/data_utils.py",
       "accessCount": 11,
-      "lastAccessed": 1772947187333,
+      "lastAccessed": 1772944234713,
       "type": "file"
     },
     {
@@ -204,9 +210,9 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/components/KlineChart.vue",
-      "accessCount": 10,
-      "lastAccessed": 1772948282845,
+      "path": "frontend/src/components/PositionRecommendation.vue",
+      "accessCount": 11,
+      "lastAccessed": 1772976618630,
       "type": "file"
     },
     {
@@ -222,9 +228,21 @@
       "type": "file"
     },
     {
+      "path": "frontend/src/components/backtest/BacktestMetrics.vue",
+      "accessCount": 9,
+      "lastAccessed": 1772976639288,
+      "type": "file"
+    },
+    {
       "path": "frontend/src/components/InputForm.vue",
       "accessCount": 8,
       "lastAccessed": 1772940334389,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/views/BacktestView.vue",
+      "accessCount": 8,
+      "lastAccessed": 1772976553245,
       "type": "file"
     },
     {
@@ -234,10 +252,10 @@
       "type": "directory"
     },
     {
-      "path": "frontend/src/views/BacktestView.vue",
+      "path": "frontend/src",
       "accessCount": 7,
-      "lastAccessed": 1772948425186,
-      "type": "file"
+      "lastAccessed": 1772976676555,
+      "type": "directory"
     },
     {
       "path": "frontend/package.json",
@@ -264,16 +282,16 @@
       "type": "file"
     },
     {
+      "path": "frontend/src/components/backtest/BacktestEquityChart.vue",
+      "accessCount": 5,
+      "lastAccessed": 1772976637751,
+      "type": "file"
+    },
+    {
       "path": "backend/routers/data.py",
       "accessCount": 4,
       "lastAccessed": 1772940344743,
       "type": "file"
-    },
-    {
-      "path": "frontend/src",
-      "accessCount": 4,
-      "lastAccessed": 1772948276564,
-      "type": "directory"
     },
     {
       "path": "backend/requirements.txt",
@@ -282,9 +300,27 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/components/PositionRecommendation.vue",
+      "path": "frontend/src/components/ResultCard.vue",
       "accessCount": 4,
-      "lastAccessed": 1772956951841,
+      "lastAccessed": 1772976429828,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/IndicatorList.vue",
+      "accessCount": 4,
+      "lastAccessed": 1772976515984,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/backtest/BacktestTradeList.vue",
+      "accessCount": 4,
+      "lastAccessed": 1772976543087,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/backtest/BacktestDrawdownChart.vue",
+      "accessCount": 4,
+      "lastAccessed": 1772976596444,
       "type": "file"
     },
     {
@@ -294,9 +330,9 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/components/ResultCard.vue",
+      "path": "frontend/src/views/DashboardView.vue",
       "accessCount": 3,
-      "lastAccessed": 1772956951720,
+      "lastAccessed": 1772976553353,
       "type": "file"
     },
     {
@@ -315,18 +351,6 @@
       "path": "backend/services/signal_adapter.py",
       "accessCount": 2,
       "lastAccessed": 1772940873254,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/views/DashboardView.vue",
-      "accessCount": 2,
-      "lastAccessed": 1772948282897,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/backtest/BacktestTradeList.vue",
-      "accessCount": 2,
-      "lastAccessed": 1772948894882,
       "type": "file"
     },
     {
@@ -354,9 +378,9 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/components/IndicatorList.vue",
+      "path": "docs/ETF量化交易系统说明书.md",
       "accessCount": 2,
-      "lastAccessed": 1772956951895,
+      "lastAccessed": 1772975813296,
       "type": "file"
     },
     {
@@ -384,24 +408,6 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/components/backtest/BacktestMetrics.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772940435472,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/backtest/BacktestEquityChart.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772940506193,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/backtest/BacktestDrawdownChart.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772940506763,
-      "type": "file"
-    },
-    {
       "path": "backend/tests/__init__.py",
       "accessCount": 1,
       "lastAccessed": 1772940962771,
@@ -412,13 +418,15 @@
       "accessCount": 1,
       "lastAccessed": 1772940963636,
       "type": "file"
-    },
-    {
-      "path": "docs/ETF量化交易系统说明书.md",
-      "accessCount": 1,
-      "lastAccessed": 1772957217958,
-      "type": "file"
     }
   ],
-  "userDirectives": []
+  "userDirectives": [
+    {
+      "timestamp": 1772976737382,
+      "directive": "颜色配置：中国股市风格（红涨绿跌）- 红色 #ef5350 用于买入/多头/上涨/盈利，绿色 #26a69a 用于卖出/空头/下跌/亏损。SignalBadge 使用 danger=买入，success=卖出。已应用于所有交易相关组件。",
+      "context": "frontend/src/components/*.vue, frontend/src/styles/colors.ts",
+      "source": "explicit",
+      "priority": "high"
+    }
+  ]
 }

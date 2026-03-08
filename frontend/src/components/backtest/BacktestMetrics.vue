@@ -19,12 +19,12 @@
     <el-col :span="6">
       <el-card class="metric-card" shadow="hover">
         <div class="metric-content">
-          <div class="metric-icon" style="background: #67c23a">
+          <div class="metric-icon" style="background: #ef5350">
             <el-icon><DataAnalysis /></el-icon>
           </div>
           <div class="metric-info">
             <div class="metric-label">年化收益率</div>
-            <div class="metric-value" style="color: #67c23a">
+            <div class="metric-value" style="color: #ef5350">
               {{ (metrics.annualized_return * 100).toFixed(2) }}%
             </div>
           </div>
@@ -35,12 +35,12 @@
     <el-col :span="6">
       <el-card class="metric-card" shadow="hover">
         <div class="metric-content">
-          <div class="metric-icon" style="background: #f56c6c">
+          <div class="metric-icon" style="background: #26a69a">
             <el-icon><Bottom /></el-icon>
           </div>
           <div class="metric-info">
             <div class="metric-label">最大回撤</div>
-            <div class="metric-value" style="color: #f56c6c">
+            <div class="metric-value" style="color: #26a69a">
               {{ (metrics.max_drawdown * 100).toFixed(2) }}%
             </div>
           </div>
@@ -139,13 +139,13 @@
         </div>
         <div class="detail-item">
           <span class="detail-label">平均盈利：</span>
-          <span class="detail-value" style="color: #67c23a">¥{{ metrics.avg_win.toFixed(2) }}</span>
+          <span class="detail-value" style="color: #ef5350">¥{{ metrics.avg_win.toFixed(2) }}</span>
         </div>
       </el-col>
       <el-col :span="12">
         <div class="detail-item">
           <span class="detail-label">平均亏损：</span>
-          <span class="detail-value" style="color: #f56c6c">¥{{ metrics.avg_loss.toFixed(2) }}</span>
+          <span class="detail-value" style="color: #26a69a">¥{{ metrics.avg_loss.toFixed(2) }}</span>
         </div>
         <div class="detail-item">
           <span class="detail-label">盈亏比：</span>
@@ -178,21 +178,21 @@ const props = defineProps<Props>()
 
 const returnColor = computed(() => {
   if (!props.metrics) return '#909399'
-  return props.metrics.total_return >= 0 ? '#67c23a' : '#f56c6c'
+  return props.metrics.total_return >= 0 ? '#ef5350' : '#26a69a'  // 盈利红色，亏损绿色
 })
 
 const sharpeColor = computed(() => {
   if (!props.metrics) return '#909399'
-  if (props.metrics.sharpe_ratio >= 2) return '#67c23a'
+  if (props.metrics.sharpe_ratio >= 2) return '#ef5350'  // 高夏普比是好的，用红色
   if (props.metrics.sharpe_ratio >= 1) return '#e6a23c'
-  return '#f56c6c'
+  return '#26a69a'  // 低夏普比是差的，用绿色
 })
 
 const winRateColor = computed(() => {
   if (!props.metrics) return '#909399'
-  if (props.metrics.win_rate >= 0.6) return '#67c23a'
+  if (props.metrics.win_rate >= 0.6) return '#ef5350'  // 高胜率是好的，用红色
   if (props.metrics.win_rate >= 0.5) return '#e6a23c'
-  return '#f56c6c'
+  return '#26a69a'  // 低胜率是差的，用绿色
 })
 </script>
 

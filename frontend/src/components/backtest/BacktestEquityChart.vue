@@ -80,7 +80,7 @@ const chartOption = computed(() => {
             <div style="padding: 10px;">
               <div style="font-weight: bold; margin-bottom: 8px;">${point.date}</div>
               <div>资金: <span style="color: #409eff; font-weight: bold;">¥${point.value.toFixed(2)}</span></div>
-              <div>收益率: <span style="color: ${returnPct >= 0 ? '#67c23a' : '#f56c6c'};">${returnPct}%</span></div>
+              <div>收益率: <span style="color: ${returnPct >= 0 ? '#ef5350' : '#26a69a'};">${returnPct}%</span></div>
             </div>
           `
         }
@@ -188,7 +188,7 @@ const chartOption = computed(() => {
           return `
             <div style="padding: 10px;">
               <div style="font-weight: bold; margin-bottom: 8px;">${point.date}</div>
-              <div>回撤: <span style="color: #f56c6c; font-weight: bold;">${point.drawdown < 0 ? (point.drawdown * 100).toFixed(2) : '0.00'}%</span></div>
+              <div>回撤: <span style="color: #26a69a; font-weight: bold;">${point.drawdown < 0 ? (point.drawdown * 100).toFixed(2) : '0.00'}%</span></div>
             </div>
           `
         }
@@ -243,7 +243,7 @@ const chartOption = computed(() => {
           symbol: 'none',
           lineStyle: {
             width: 2,
-            color: '#f56c6c'
+            color: '#26a69a'  // 回撤线 - 绿色
           },
           areaStyle: {
             color: {

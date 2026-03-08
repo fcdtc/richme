@@ -176,9 +176,9 @@ const activeNames = ref(['ma', 'rsi', 'macd'])
 const getSignalType = (signal: 'bullish' | 'bearish' | 'neutral') => {
   switch (signal) {
     case 'bullish':
-      return 'success'
+      return 'danger'    // 多头 - 红色
     case 'bearish':
-      return 'danger'
+      return 'success'   // 空头 - 绿色
     case 'neutral':
       return 'info'
     default:

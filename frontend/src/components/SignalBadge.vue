@@ -20,9 +20,9 @@ const props = withDefaults(defineProps<Props>(), {
 const tagType = computed(() => {
   switch (props.signalType) {
     case 'buy':
-      return 'success'
+      return 'danger'    // 买入 - 红色
     case 'sell':
-      return 'danger'
+      return 'success'   // 卖出 - 绿色
     case 'hold':
       return 'info'
     default:

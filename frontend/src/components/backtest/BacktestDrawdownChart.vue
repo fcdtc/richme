@@ -121,7 +121,7 @@ const chartOption = computed(() => {
 
   const dates = props.equityCurve.map(e => e.date)
   const drawdowns = props.equityCurve.map(e => e.drawdown * 100)
-  const colors = drawdowns.map(d => d < 0 ? '#f56c6c' : '#67c23a')
+  const colors = drawdowns.map(d => d < 0 ? '#26a69a' : '#ef5350')  // 回撤(亏损)绿色，无回撤红色
 
   return {
     tooltip: {
@@ -139,7 +139,7 @@ const chartOption = computed(() => {
         return `
           <div style="padding: 10px;">
             <div style="font-weight: bold; margin-bottom: 8px;">${dates[idx]}</div>
-            <div>回撤: <span style="color: ${drawdowns[idx] < 0 ? '#f56c6c' : '#67c23a'}; font-weight: bold;">${drawdowns[idx].toFixed(2)}%</span></div>
+            <div>回撤: <span style="color: ${drawdowns[idx] < 0 ? '#26a69a' : '#ef5350'}; font-weight: bold;">${drawdowns[idx].toFixed(2)}%</span></div>
           </div>
         `
       }

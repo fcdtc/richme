@@ -2,8 +2,33 @@
 > etf-quant-calculator@0.1.0 dev
 > vite --port 5173
 
+Port 5173 is in use, trying another one...
 
-  VITE v5.4.21  ready in 412 ms
+  VITE v5.4.21  ready in 429 ms
 
-  ➜  Local:   http://localhost:5173/
-  ➜  Network: use --host to expose
+  ➜  Local:   http://localhost:21:28:17 [vite] hmr update /src/components/KlineChart.vue
+21:28:18 [vite] hmr update /src/components/KlineChart.vue
+21:28:18 [vite] hmr update /src/components/KlineChart.vue
+21:28:19 [vite] hmr update /src/components/KlineChart.vue
+21:28:20 [vite] hmr update /src/components/KlineChart.vue
+21:28:34 [vite] hmr update /src/components/SignalBadge.vue
+21:28:35 [vite] hmr update /src/components/IndicatorList.vue
+21:28:49 [vite] hmr update /src/components/PositionRecommendation.vue
+21:28:50 [vite] hmr update /src/components/PositionRecommendation.vue?vue&type=style&index=0&scoped=843ae660&lang.css
+21:28:51 [vite] hmr update /src/components/PositionRecommendation.vue?vue&type=style&index=0&scoped=843ae660&lang.css
+21:29:02 [vite] hmr update /src/components/backtest/BacktestTradeList.vue?vue&type=style&index=0&scoped=d8d225db&lang.css
+21:29:03 [vite] hmr update /src/components/backtest/BacktestEquityChart.vue
+21:29:42 [vite] hmr update /src/components/backtest/BacktestMetrics.vue
+21:29:43 [vite] hmr update /src/components/backtest/BacktestMetrics.vue
+21:29:43 [vite] hmr update /src/components/backtest/BacktestMetrics.vue
+21:29:44 [vite] hmr update /src/components/backtest/BacktestMetrics.vue
+21:29:45 [vite] hmr update /src/components/backtest/BacktestMetrics.vue
+21:29:55 [vite] hmr update /src/components/backtest/BacktestDrawdownChart.vue
+21:29:56 [vite] hmr update /src/components/backtest/BacktestDrawdownChart.vue
+21:30:17 [vite] hmr update /src/components/PositionRecommendation.vue
+21:30:17 [vite] hmr update /src/components/PositionRecommendation.vue?vue&type=style&index=0&scoped=843ae660&lang.css
+21:30:18 [vite] hmr update /src/components/PositionRecommendation.vue?vue&type=style&index=0&scoped=843ae660&lang.css
+21:30:36 [vite] hmr update /src/components/backtest/BacktestEquityChart.vue
+21:30:37 [vite] hmr update /src/components/backtest/BacktestEquityChart.vue
+21:30:38 [vite] hmr update /src/components/backtest/BacktestMetrics.vue
+21:30:39 [vite] hmr update /src/components/backtest/BacktestMetrics.vue

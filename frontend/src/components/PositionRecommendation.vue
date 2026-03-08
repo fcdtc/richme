@@ -176,8 +176,8 @@ const props = withDefaults(defineProps<Props>(), {
 const actionType = computed(() => {
   if (!props.position) return 'info'
   switch (props.position.action) {
-    case 'buy': return 'success'
-    case 'sell': return 'warning'
+    case 'buy': return 'danger'    // 买入 - 红色
+    case 'sell': return 'success'  // 卖出 - 绿色
     default: return 'info'
   }
 })
@@ -234,10 +234,10 @@ const maxPositionPct = computed(() => {
 
 const progressColor = computed(() => {
   const pct = positionPercentage.value
-  if (pct < 30) return '#67c23a'
+  if (pct < 30) return '#26a69a'  // 低仓位 - 绿色
   if (pct < 60) return '#409eff'
   if (pct < 80) return '#e6a23c'
-  return '#f56c6c'
+  return '#ef5350'  // 高仓位 - 红色
 })
 </script>
 
@@ -297,11 +297,11 @@ const progressColor = computed(() => {
 }
 
 .quant-value.score-bullish {
-  color: #67c23a;
+  color: #ef5350;  /* 多头 - 红色 */
 }
 
 .quant-value.score-bearish {
-  color: #f56c6c;
+  color: #26a69a;  /* 空头 - 绿色 */
 }
 
 .quant-value.score-neutral {
@@ -309,11 +309,11 @@ const progressColor = computed(() => {
 }
 
 .quant-value.trend-up {
-  color: #67c23a;
+  color: #ef5350;  /* 上涨 - 红色 */
 }
 
 .quant-value.trend-down {
-  color: #f56c6c;
+  color: #26a69a;  /* 下跌 - 绿色 */
 }
 
 .quant-value.trend-neutral {
@@ -383,11 +383,11 @@ const progressColor = computed(() => {
 }
 
 .stop-loss .price-value {
-  color: #f56c6c;
+  color: #26a69a;  /* 止损 - 绿色 */
 }
 
 .take-profit .price-value {
-  color: #67c23a;
+  color: #ef5350;  /* 止盈 - 红色 */
 }
 
 .price-note {
@@ -437,7 +437,7 @@ const progressColor = computed(() => {
 }
 
 .legend-dot.target {
-  background: #67c23a;
+  background: #ef5350;  /* 目标仓位 - 红色 */
 }
 
 .legend-dot.max {

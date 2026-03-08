@@ -91,14 +91,14 @@ const chartOption = computed(() => {
           const idx = data.dataIndex
           const k = klines[idx]
           const change = ((k.close - k.open) / k.open * 100).toFixed(2)
-          const color = k.close >= k.open ? '#f56c6c' : '#67c23a'
+          const color = k.close >= k.open ? '#ef5350' : '#26a69a'  // 阳线红色，阴线绿色
           return `
             <div style="padding: 8px;">
               <div style="font-weight: bold; margin-bottom: 8px;">${k.date}</div>
               <div>开盘: <span style="color: #409eff;">${k.open.toFixed(3)}</span></div>
               <div>收盘: <span style="color: ${color};">${k.close.toFixed(3)}</span></div>
-              <div>最高: <span style="color: #f56c6c;">${k.high.toFixed(3)}</span></div>
-              <div>最低: <span style="color: #67c23a;">${k.low.toFixed(3)}</span></div>
+              <div>最高: <span style="color: #ef5350;">${k.high.toFixed(3)}</span></div>
+              <div>最低: <span style="color: #26a69a;">${k.low.toFixed(3)}</span></div>
               <div>涨跌: <span style="color: ${color};">${change}%</span></div>
               <div>成交量: ${(k.volume / 10000).toFixed(0)}万</div>
             </div>
@@ -173,10 +173,10 @@ const chartOption = computed(() => {
           type: 'candlestick',
           data: ohlc,
           itemStyle: {
-            color: '#f56c6c',        // 阳线填充色
-            color0: '#67c23a',       // 阴线填充色
-            borderColor: '#f56c6c',  // 阳线边框色
-            borderColor0: '#67c23a'  // 阴线边框色
+            color: '#ef5350',        // 阳线填充色（红色-上涨）
+            color0: '#26a69a',       // 阴线填充色（绿色-下跌）
+            borderColor: '#ef5350',  // 阳线边框色（红色-上涨）
+            borderColor0: '#26a69a'  // 阴线边框色（绿色-下跌）
           },
           markPoint: {
             symbol: 'pin',
@@ -186,7 +186,7 @@ const chartOption = computed(() => {
               coord: [signal.date, signal.price || ohlc[dates.indexOf(signal.date)]?.[1] || 0],
               value: signal.type === 'buy' ? '买' : '卖',
               itemStyle: {
-                color: signal.type === 'buy' ? '#67c23a' : '#f56c6c'
+                color: signal.type === 'buy' ? '#ef5350' : '#26a69a'  // 买入红色，卖出绿色
               },
               label: {
                 color: 'white',
@@ -233,7 +233,7 @@ const chartOption = computed(() => {
             color: function(params: any) {
               const idx = params.dataIndex
               if (idx === 0) return '#409eff'
-              return klines[idx].close >= klines[idx-1].close ? '#f56c6c' : '#67c23a'
+              return klines[idx].close >= klines[idx-1].close ? '#ef5350' : '#26a69a'  // 上涨红色，下跌绿色
             }
           }
         }

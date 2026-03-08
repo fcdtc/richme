@@ -154,12 +154,12 @@ const getExitReasonText = (reason: string) => {
 }
 
 .profit {
-  color: #67c23a;
+  color: #ef5350;  /* 盈利 - 红色 */
   font-weight: 500;
 }
 
 .loss {
-  color: #f56c6c;
+  color: #26a69a;  /* 亏损 - 绿色 */
   font-weight: 500;
 }
 
