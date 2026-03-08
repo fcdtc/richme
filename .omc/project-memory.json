@@ -121,8 +121,8 @@
   "hotPaths": [
     {
       "path": "backend/routers/analysis.py",
-      "accessCount": 32,
-      "lastAccessed": 1772940344689,
+      "accessCount": 33,
+      "lastAccessed": 1772956951780,
       "type": "file"
     },
     {
@@ -133,14 +133,14 @@
     },
     {
       "path": "backend/services/indicators.py",
-      "accessCount": 22,
-      "lastAccessed": 1772944066868,
+      "accessCount": 24,
+      "lastAccessed": 1772956937586,
       "type": "file"
     },
     {
       "path": "frontend/src/types/index.ts",
-      "accessCount": 18,
-      "lastAccessed": 1772948390057,
+      "accessCount": 19,
+      "lastAccessed": 1772956959754,
       "type": "file"
     },
     {
@@ -150,27 +150,33 @@
       "type": "file"
     },
     {
-      "path": "backend/services/backtest.py",
-      "accessCount": 14,
-      "lastAccessed": 1772954939378,
+      "path": "backend/services/strategy_engine.py",
+      "accessCount": 15,
+      "lastAccessed": 1772956937474,
       "type": "file"
     },
     {
       "path": "backend/services/signal.py",
-      "accessCount": 13,
-      "lastAccessed": 1772941044714,
+      "accessCount": 15,
+      "lastAccessed": 1772956937531,
       "type": "file"
     },
     {
-      "path": "backend/services/strategy_engine.py",
+      "path": "backend/services/backtest.py",
+      "accessCount": 15,
+      "lastAccessed": 1772956959615,
+      "type": "file"
+    },
+    {
+      "path": "backend/main.py",
       "accessCount": 13,
-      "lastAccessed": 1772954933015,
+      "lastAccessed": 1772956874308,
       "type": "file"
     },
     {
       "path": "backend/models/schemas.py",
-      "accessCount": 12,
-      "lastAccessed": 1772940344623,
+      "accessCount": 13,
+      "lastAccessed": 1772956937697,
       "type": "file"
     },
     {
@@ -178,12 +184,6 @@
       "accessCount": 12,
       "lastAccessed": 1772940536459,
       "type": "directory"
-    },
-    {
-      "path": "backend/main.py",
-      "accessCount": 12,
-      "lastAccessed": 1772943160179,
-      "type": "file"
     },
     {
       "path": "backend/services/data_utils.py",
@@ -211,20 +211,20 @@
     },
     {
       "path": "frontend/src/App.vue",
-      "accessCount": 9,
-      "lastAccessed": 1772940569296,
+      "accessCount": 10,
+      "lastAccessed": 1772956890033,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/fetcher.py",
+      "accessCount": 10,
+      "lastAccessed": 1772956959665,
       "type": "file"
     },
     {
       "path": "frontend/src/components/InputForm.vue",
       "accessCount": 8,
       "lastAccessed": 1772940334389,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/fetcher.py",
-      "accessCount": 8,
-      "lastAccessed": 1772944045187,
       "type": "file"
     },
     {
@@ -240,33 +240,33 @@
       "type": "file"
     },
     {
-      "path": "config/settings.py",
-      "accessCount": 5,
-      "lastAccessed": 1772940364431,
+      "path": "frontend/package.json",
+      "accessCount": 6,
+      "lastAccessed": 1772956874205,
       "type": "file"
     },
     {
-      "path": "frontend/package.json",
-      "accessCount": 5,
-      "lastAccessed": 1772940538493,
+      "path": "config/settings.py",
+      "accessCount": 6,
+      "lastAccessed": 1772956886468,
       "type": "file"
     },
     {
       "path": "backend/models/backtest_schemas.py",
+      "accessCount": 6,
+      "lastAccessed": 1772956959559,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/main.ts",
       "accessCount": 5,
-      "lastAccessed": 1772948336478,
+      "lastAccessed": 1772956883945,
       "type": "file"
     },
     {
       "path": "backend/routers/data.py",
       "accessCount": 4,
       "lastAccessed": 1772940344743,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/main.ts",
-      "accessCount": 4,
-      "lastAccessed": 1772940565857,
       "type": "file"
     },
     {
@@ -277,14 +277,14 @@
     },
     {
       "path": "backend/requirements.txt",
-      "accessCount": 3,
-      "lastAccessed": 1772938306841,
+      "accessCount": 4,
+      "lastAccessed": 1772956874257,
       "type": "file"
     },
     {
       "path": "frontend/src/components/PositionRecommendation.vue",
-      "accessCount": 3,
-      "lastAccessed": 1772938319421,
+      "accessCount": 4,
+      "lastAccessed": 1772956951841,
       "type": "file"
     },
     {
@@ -295,8 +295,8 @@
     },
     {
       "path": "frontend/src/components/ResultCard.vue",
-      "accessCount": 2,
-      "lastAccessed": 1772940334444,
+      "accessCount": 3,
+      "lastAccessed": 1772956951720,
       "type": "file"
     },
     {
@@ -330,27 +330,33 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/components/IndicatorList.vue",
-      "accessCount": 1,
-      "lastAccessed": 1772891553115,
-      "type": "file"
-    },
-    {
       "path": "report.md",
-      "accessCount": 1,
-      "lastAccessed": 1772936308447,
+      "accessCount": 2,
+      "lastAccessed": 1772956858006,
       "type": "file"
     },
     {
-      "path": "API_IMPLEMENTATION_SUMMARY.md",
-      "accessCount": 1,
-      "lastAccessed": 1772936308512,
+      "path": "setup.sh",
+      "accessCount": 2,
+      "lastAccessed": 1772956860577,
       "type": "file"
     },
     {
       "path": "fetch_etf_data.py",
-      "accessCount": 1,
-      "lastAccessed": 1772936318805,
+      "accessCount": 2,
+      "lastAccessed": 1772956860629,
+      "type": "file"
+    },
+    {
+      "path": "API_IMPLEMENTATION_SUMMARY.md",
+      "accessCount": 2,
+      "lastAccessed": 1772956860683,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/IndicatorList.vue",
+      "accessCount": 2,
+      "lastAccessed": 1772956951895,
       "type": "file"
     },
     {
@@ -363,12 +369,6 @@
       "path": "test_fetcher.py",
       "accessCount": 1,
       "lastAccessed": 1772936325959,
-      "type": "file"
-    },
-    {
-      "path": "setup.sh",
-      "accessCount": 1,
-      "lastAccessed": 1772936330235,
       "type": "file"
     },
     {
@@ -411,6 +411,12 @@
       "path": "backend/tests/test_strategy_engine.py",
       "accessCount": 1,
       "lastAccessed": 1772940963636,
+      "type": "file"
+    },
+    {
+      "path": "docs/ETF量化交易系统说明书.md",
+      "accessCount": 1,
+      "lastAccessed": 1772957217958,
       "type": "file"
     }
   ],
