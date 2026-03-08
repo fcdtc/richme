@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"python3 -c \\\"from backend.routers.analysis import calculate_position_recommendation, RISK_CONFIG; print('Import OK'); print('RISK_CONFIG keys:', list(RISK_CONFIG['neutral'].keys()))\\\"\",\"de...",
-  "error": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/congfei/github/richme/backend/routers/analysis.py\", line 4, in <module>\n    from fastapi import APIRouter, HTTPException\nModuleNotFoundError: No module named 'fastapi'\n\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"/Users/congfei/github/richme/backend/routers/analysis.py\", line 4, in <module>\n    from fastapi import APIRouter, HTTPException\nModuleNotFoundError:...",
-  "timestamp": "2026-03-07T15:04:03.385Z",
-  "retry_count": 2
+  "tool_input_preview": "{\"command\":\"lsof -i :8000 | grep LISTEN | awk '{print $2}' | xargs -r kill -9 2>/dev/null; sleep 1; source venv/bin/activate && nohup python -m backend.main > logs/backend.log 2>&1 &\",\"description\":\"R...",
+  "error": "Exit code 127\n(eval):source:1: no such file or directory: venv/bin/activate\n\n(eval):source:1: no such file or directory: venv/bin/activate",
+  "timestamp": "2026-03-08T04:30:56.504Z",
+  "retry_count": 1
 }

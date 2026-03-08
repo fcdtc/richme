@@ -121,62 +121,188 @@
   "hotPaths": [
     {
       "path": "backend/routers/analysis.py",
-      "accessCount": 15,
-      "lastAccessed": 1772896102562,
+      "accessCount": 32,
+      "lastAccessed": 1772940344689,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 32,
+      "lastAccessed": 1772940879581,
+      "type": "directory"
+    },
+    {
+      "path": "backend/services/indicators.py",
+      "accessCount": 22,
+      "lastAccessed": 1772944066868,
       "type": "file"
     },
     {
       "path": "frontend/src/types/index.ts",
-      "accessCount": 4,
-      "lastAccessed": 1772892519910,
-      "type": "file"
-    },
-    {
-      "path": "backend/models/schemas.py",
-      "accessCount": 3,
-      "lastAccessed": 1772892555689,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/App.vue",
-      "accessCount": 3,
-      "lastAccessed": 1772892812008,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/indicators.py",
-      "accessCount": 2,
-      "lastAccessed": 1772891701489,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/InputForm.vue",
-      "accessCount": 2,
-      "lastAccessed": 1772892788952,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/PositionRecommendation.vue",
-      "accessCount": 2,
-      "lastAccessed": 1772895361997,
-      "type": "file"
-    },
-    {
-      "path": "config/settings.py",
-      "accessCount": 2,
-      "lastAccessed": 1772895362054,
+      "accessCount": 16,
+      "lastAccessed": 1772940611985,
       "type": "file"
     },
     {
       "path": "frontend/src/services/api.ts",
-      "accessCount": 1,
-      "lastAccessed": 1772891539050,
+      "accessCount": 14,
+      "lastAccessed": 1772944241298,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/signal.py",
+      "accessCount": 13,
+      "lastAccessed": 1772941044714,
+      "type": "file"
+    },
+    {
+      "path": "backend/models/schemas.py",
+      "accessCount": 12,
+      "lastAccessed": 1772940344623,
+      "type": "file"
+    },
+    {
+      "path": "frontend",
+      "accessCount": 12,
+      "lastAccessed": 1772940536459,
+      "type": "directory"
+    },
+    {
+      "path": "backend/main.py",
+      "accessCount": 12,
+      "lastAccessed": 1772943160179,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/backtest.py",
+      "accessCount": 12,
+      "lastAccessed": 1772944346817,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/data_utils.py",
+      "accessCount": 11,
+      "lastAccessed": 1772944234713,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/strategy_engine.py",
+      "accessCount": 10,
+      "lastAccessed": 1772944224053,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/KlineChart.vue",
+      "accessCount": 9,
+      "lastAccessed": 1772940533645,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "accessCount": 9,
+      "lastAccessed": 1772940569296,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/InputForm.vue",
+      "accessCount": 8,
+      "lastAccessed": 1772940334389,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/fetcher.py",
+      "accessCount": 8,
+      "lastAccessed": 1772944045187,
+      "type": "file"
+    },
+    {
+      "path": "backend",
+      "accessCount": 7,
+      "lastAccessed": 1772941046003,
+      "type": "directory"
+    },
+    {
+      "path": "config/settings.py",
+      "accessCount": 5,
+      "lastAccessed": 1772940364431,
+      "type": "file"
+    },
+    {
+      "path": "frontend/package.json",
+      "accessCount": 5,
+      "lastAccessed": 1772940538493,
+      "type": "file"
+    },
+    {
+      "path": "backend/routers/data.py",
+      "accessCount": 4,
+      "lastAccessed": 1772940344743,
       "type": "file"
     },
     {
       "path": "frontend/src/main.ts",
-      "accessCount": 1,
-      "lastAccessed": 1772891539166,
+      "accessCount": 4,
+      "lastAccessed": 1772940565857,
+      "type": "file"
+    },
+    {
+      "path": "backend/requirements.txt",
+      "accessCount": 3,
+      "lastAccessed": 1772938306841,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/PositionRecommendation.vue",
+      "accessCount": 3,
+      "lastAccessed": 1772938319421,
+      "type": "file"
+    },
+    {
+      "path": "tests/unit/test_indicators.py",
+      "accessCount": 3,
+      "lastAccessed": 1772940528513,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src",
+      "accessCount": 3,
+      "lastAccessed": 1772940539151,
+      "type": "directory"
+    },
+    {
+      "path": "backend/routers/backtest.py",
+      "accessCount": 3,
+      "lastAccessed": 1772944033797,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/ResultCard.vue",
+      "accessCount": 2,
+      "lastAccessed": 1772940334444,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/__init__.py",
+      "accessCount": 2,
+      "lastAccessed": 1772940350985,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "accessCount": 2,
+      "lastAccessed": 1772940575091,
+      "type": "file"
+    },
+    {
+      "path": "backend/services/signal_adapter.py",
+      "accessCount": 2,
+      "lastAccessed": 1772940873254,
+      "type": "file"
+    },
+    {
+      "path": "backend/models/backtest_schemas.py",
+      "accessCount": 2,
+      "lastAccessed": 1772944116006,
       "type": "file"
     },
     {
@@ -186,52 +312,106 @@
       "type": "file"
     },
     {
-      "path": "frontend/src/components/ResultCard.vue",
+      "path": "report.md",
       "accessCount": 1,
-      "lastAccessed": 1772891553244,
+      "lastAccessed": 1772936308447,
       "type": "file"
     },
     {
-      "path": "backend/main.py",
+      "path": "API_IMPLEMENTATION_SUMMARY.md",
       "accessCount": 1,
-      "lastAccessed": 1772891816073,
+      "lastAccessed": 1772936308512,
       "type": "file"
     },
     {
-      "path": "backend/requirements.txt",
+      "path": "fetch_etf_data.py",
       "accessCount": 1,
-      "lastAccessed": 1772891823177,
+      "lastAccessed": 1772936318805,
       "type": "file"
     },
     {
-      "path": "frontend/package.json",
+      "path": "test_api.py",
       "accessCount": 1,
-      "lastAccessed": 1772892485181,
+      "lastAccessed": 1772936325856,
       "type": "file"
     },
     {
-      "path": "backend/services/fetcher.py",
+      "path": "test_fetcher.py",
       "accessCount": 1,
-      "lastAccessed": 1772892485232,
+      "lastAccessed": 1772936325959,
       "type": "file"
     },
     {
-      "path": "frontend/src/components/KlineChart.vue",
+      "path": "setup.sh",
       "accessCount": 1,
-      "lastAccessed": 1772892698197,
+      "lastAccessed": 1772936330235,
       "type": "file"
     },
     {
-      "path": "backend/services/signal.py",
+      "path": "start.sh",
       "accessCount": 1,
-      "lastAccessed": 1772895362122,
+      "lastAccessed": 1772936333135,
       "type": "file"
     },
     {
-      "path": "backend",
+      "path": "backend/services/strategy_selector.py",
       "accessCount": 1,
-      "lastAccessed": 1772896120593,
-      "type": "directory"
+      "lastAccessed": 1772940424063,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/backtest/BacktestForm.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772940434883,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/backtest/BacktestMetrics.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772940435472,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/backtest/BacktestEquityChart.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772940506193,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/backtest/BacktestDrawdownChart.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772940506763,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/components/backtest/BacktestTradeList.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772940507328,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/views/BacktestView.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772940522294,
+      "type": "file"
+    },
+    {
+      "path": "frontend/src/views/DashboardView.vue",
+      "accessCount": 1,
+      "lastAccessed": 1772940563341,
+      "type": "file"
+    },
+    {
+      "path": "backend/tests/__init__.py",
+      "accessCount": 1,
+      "lastAccessed": 1772940962771,
+      "type": "file"
+    },
+    {
+      "path": "backend/tests/test_strategy_engine.py",
+      "accessCount": 1,
+      "lastAccessed": 1772940963636,
+      "type": "file"
     }
   ],
   "userDirectives": []

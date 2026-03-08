@@ -53,9 +53,13 @@ use([
 interface Props {
   klineData: KlineData | null
   currentPrice?: number
+  signals?: Array<{ date: string; type: 'buy' | 'sell'; price?: number }>
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  currentPrice: 0,
+  signals: () => []
+})
 
 const chartType = ref<'candlestick' | 'line'>('candlestick')
 
@@ -173,6 +177,23 @@ const chartOption = computed(() => {
             color0: '#67c23a',       // 阴线填充色
             borderColor: '#f56c6c',  // 阳线边框色
             borderColor0: '#67c23a'  // 阴线边框色
+          },
+          markPoint: {
+            symbol: 'pin',
+            symbolSize: 40,
+            data: props.signals.map(signal => ({
+              name: signal.type === 'buy' ? '买入信号' : '卖出信号',
+              coord: [signal.date, signal.price || ohlc[dates.indexOf(signal.date)]?.[1] || 0],
+              value: signal.type === 'buy' ? '买' : '卖',
+              itemStyle: {
+                color: signal.type === 'buy' ? '#67c23a' : '#f56c6c'
+              },
+              label: {
+                color: 'white',
+                fontSize: 12,
+                fontWeight: 'bold'
+              }
+            }))
           }
         },
         {

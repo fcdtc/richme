@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from config.settings import settings
-from backend.routers import data, analysis
+from backend.routers import data, analysis, backtest
 
 
 @asynccontextmanager
@@ -41,6 +41,7 @@ async def health_check():
 # Register routers
 app.include_router(data.router)
 app.include_router(analysis.router)
+app.include_router(backtest.router)
 
 
 @app.get("/")

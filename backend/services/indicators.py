@@ -238,6 +238,143 @@ def calculate_all_indicators(series: pd.Series) -> Dict[str, Union[float, Dict[s
     return indicators
 
 
+def calculate_atr(high: pd.Series, low: pd.Series, close: pd.Series, period: int = 14) -> pd.Series:
+    """
+    Calculate Average True Range for dynamic stop-loss.
+    Uses talib if available, pandas fallback otherwise.
+
+    Args:
+        high: High price series
+        low: Low price series
+        close: Close price series
+        period: ATR period
+
+    Returns:
+        ATR series
+    """
+    if TALIB_AVAILABLE and len(high) >= period + 1:
+        atr_values = talib.ATR(high.values, low.values, close.values, timeperiod=period)
+        return pd.Series(atr_values, index=high.index).fillna(method='ffill')
+
+    # Pandas fallback: True Range = max(high-low, abs(high-prev_close), abs(low-prev_close))
+    prev_close = close.shift(1)
+    tr1 = high - low
+    tr2 = (high - prev_close).abs()
+    tr3 = (low - prev_close).abs()
+    true_range = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+    return true_range.rolling(window=period).mean()
+
+
+def calculate_volume_surge(volume: pd.Series, period: int = 20, threshold: float = 1.5) -> Dict[str, Union[float, bool]]:
+    """
+    Detect volume surge (above threshold * average).
+
+    Args:
+        volume: Volume series
+        period: Lookback period for average
+        threshold: Multiplier for surge detection
+
+    Returns:
+        Dict with current_ratio, is_surge, average_volume, threshold
+    """
+    if volume.empty or len(volume) < period:
+        return {
+            'current_ratio': 1.0,
+            'is_surge': False,
+            'average_volume': 0.0,
+            'threshold': threshold
+        }
+
+    avg_volume = volume.rolling(window=period).mean().iloc[-1]
+    current_volume = volume.iloc[-1]
+    ratio = current_volume / avg_volume if avg_volume > 0 else 1.0
+    return {
+        'current_ratio': float(ratio),
+        'is_surge': ratio >= threshold,
+        'average_volume': float(avg_volume),
+        'threshold': threshold
+    }
+
+
+def calculate_volume_shrink(volume: pd.Series, period: int = 20, threshold: float = 0.7) -> Dict[str, Union[float, bool]]:
+    """
+    Detect volume shrinkage (below threshold * average).
+
+    Args:
+        volume: Volume series
+        period: Lookback period for average
+        threshold: Multiplier for shrink detection
+
+    Returns:
+        Dict with current_ratio, is_shrink, average_volume, threshold
+    """
+    if volume.empty or len(volume) < period:
+        return {
+            'current_ratio': 1.0,
+            'is_shrink': False,
+            'average_volume': 0.0,
+            'threshold': threshold
+        }
+
+    avg_volume = volume.rolling(window=period).mean().iloc[-1]
+    current_volume = volume.iloc[-1]
+    ratio = current_volume / avg_volume if avg_volume > 0 else 1.0
+    return {
+        'current_ratio': float(ratio),
+        'is_shrink': ratio <= threshold,
+        'average_volume': float(avg_volume),
+        'threshold': threshold
+    }
+
+
+def calculate_support_resistance(high: pd.Series, low: pd.Series, lookback: int = 20) -> Dict[str, float]:
+    """
+    Calculate support and resistance levels using local extremes.
+
+    Args:
+        high: High price series
+        low: Low price series
+        lookback: Lookback period
+
+    Returns:
+        Dict with support_level, resistance_level
+    """
+    if high.empty or low.empty or len(high) < lookback:
+        return {
+            'support_level': 0.0,
+            'resistance_level': 0.0
+        }
+
+    recent_high = high.tail(lookback).max()
+    recent_low = low.tail(lookback).min()
+
+    return {
+        'support_level': float(recent_low),
+        'resistance_level': float(recent_high)
+    }
+
+
+def detect_breakout(close: pd.Series, high: pd.Series, resistance: float, threshold: float = 0.02) -> bool:
+    """
+    Detect if price breaks above resistance with threshold buffer.
+
+    Args:
+        close: Close price series
+        high: High price series
+        resistance: Resistance level
+        threshold: Percentage above resistance to confirm breakout
+
+    Returns:
+        True if breakout detected
+    """
+    if close.empty or pd.isna(resistance):
+        return False
+
+    current_close = close.iloc[-1]
+    breakout_level = resistance * (1 + threshold)
+    return current_close >= breakout_level
+
+
 def get_indicator_library() -> str:
     """
     Get the currently available indicator calculation library.

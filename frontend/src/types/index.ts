@@ -155,3 +155,107 @@ export interface AnalyzeResponse {
   klines: KlineData | null          // K线数据
   position: PositionRecommendation   // 仓位建议
 }
+
+// ============ 回测相关类型定义 ============
+
+// 回测请求
+export interface BacktestRequest {
+  etf_code: string
+  period?: string
+  start_date?: string
+  end_date?: string
+  initial_capital?: number
+}
+
+// 单笔交易记录
+export interface BacktestTrade {
+  entry_date: string
+  exit_date: string
+  entry_price: number
+  exit_price: number
+  quantity: number
+  position_value: number
+  pnl: number
+  pnl_pct: number
+  holding_days: number
+  exit_reason: 'stop_loss' | 'signal' | 'take_profit' | 'end_of_test'
+  stop_loss?: number
+  signals?: string[]
+}
+
+// 回测绩效指标
+export interface BacktestMetrics {
+  initial_capital: number
+  final_capital: number
+  total_return: number
+  annualized_return: number
+  max_drawdown: number
+  sharpe_ratio: number
+  win_rate: number
+  total_trades: number
+  avg_win: number
+  avg_loss: number
+  profit_factor: number
+}
+
+// 权益曲线点
+export interface EquityPoint {
+  date: string
+  value: number
+  drawdown: number
+}
+
+// 回测响应
+export interface BacktestResponse {
+  etf_code: string
+  period: string
+  metrics: BacktestMetrics
+  equity_curve: EquityPoint[]
+  trades: BacktestTrade[]
+  strategy_params?: StrategyParams
+  timestamp: string
+}
+
+// 趋势跟踪策略参数
+export interface TrendFollowingConfig {
+  ma_short_period: number
+  ma_long_period: number
+  rsi_oversold: number
+  rsi_overbought: number
+  volume_surge_threshold: number
+}
+
+// 底部吸筹策略参数
+export interface BottomFishingConfig {
+  bollinger_period: number
+  bollinger_std: number
+  rsi_bottom_threshold: number
+  support_lookback: number
+  volume_shrink_threshold: number
+}
+
+// 凯利公式参数
+export interface KellyConfig {
+  win_rate_estimate: number
+  avg_win_avg_loss_ratio: number
+  max_position_pct: number
+  min_position_pct: number
+  kelly_fraction: number
+}
+
+// 止损参数
+export interface StopLossConfig {
+  fixed_pct: number
+  atr_multiplier: number
+  atr_period: number
+  support_pct: number
+  trailing_activation_pct: number
+}
+
+// 完整策略参数
+export interface StrategyParams {
+  trend: TrendFollowingConfig
+  bottom: BottomFishingConfig
+  kelly: KellyConfig
+  stop_loss: StopLossConfig
+}

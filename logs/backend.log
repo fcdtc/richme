@@ -1,8 +1,13 @@
-INFO:     Started server process [44910]
+INFO:     Started server process [88214]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8000): address already in use
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+Starting ETF Quantitative Trading Calculator API
+INFO:     127.0.0.1:51226 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51288 - "GET /api/strategy/params HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51501 - "POST /api/backtest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51730 - "POST /api/backtest HTTP/1.1" 200 OK
+INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-Starting ETF Quantitative Trading Calculator API
-Shutting down ETF Quantitative Trading Calculator API
+INFO:     Finished server process [88214]
