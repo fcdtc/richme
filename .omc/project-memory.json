@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1772891469507,
+  "lastScanned": 1773023110227,
   "projectRoot": "/Users/congfei/github/richme",
   "techStack": {
     "languages": [],
@@ -25,9 +25,13 @@
     "isMonorepo": false,
     "workspaces": [],
     "mainDirectories": [
+      "docs",
       "tests"
     ],
-    "gitBranches": null
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
   },
   "customNotes": [],
   "directoryMap": {
@@ -35,7 +39,7 @@
       "path": "backend",
       "purpose": null,
       "fileCount": 3,
-      "lastAccessed": 1772891469482,
+      "lastAccessed": 1773023110213,
       "keyFiles": [
         "__init__.py",
         "main.py",
@@ -46,24 +50,26 @@
       "path": "config",
       "purpose": "Configuration files",
       "fileCount": 2,
-      "lastAccessed": 1772891469483,
+      "lastAccessed": 1773023110213,
       "keyFiles": [
         "__init__.py",
         "settings.py"
       ]
     },
-    "data": {
-      "path": "data",
-      "purpose": "Data files",
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
       "fileCount": 1,
-      "lastAccessed": 1772891469483,
-      "keyFiles": []
+      "lastAccessed": 1773023110214,
+      "keyFiles": [
+        "ETF量化交易系统说明书.md"
+      ]
     },
     "frontend": {
       "path": "frontend",
       "purpose": null,
       "fileCount": 7,
-      "lastAccessed": 1772891469484,
+      "lastAccessed": 1773023110214,
       "keyFiles": [
         "index.html",
         "package-lock.json",
@@ -72,46 +78,60 @@
         "tsconfig.node.json"
       ]
     },
+    "logs": {
+      "path": "logs",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1773023110214,
+      "keyFiles": [
+        "backend.log",
+        "frontend.log"
+      ]
+    },
     "tests": {
       "path": "tests",
       "purpose": "Test files",
       "fileCount": 0,
-      "lastAccessed": 1772891469485,
+      "lastAccessed": 1773023110214,
       "keyFiles": []
     },
     "backend/models": {
       "path": "backend/models",
       "purpose": "Data models",
-      "fileCount": 2,
-      "lastAccessed": 1772891469486,
+      "fileCount": 3,
+      "lastAccessed": 1773023110215,
       "keyFiles": [
         "__init__.py",
+        "backtest_schemas.py",
         "schemas.py"
       ]
     },
     "backend/services": {
       "path": "backend/services",
       "purpose": "Business logic services",
-      "fileCount": 4,
-      "lastAccessed": 1772891469486,
+      "fileCount": 9,
+      "lastAccessed": 1773023110215,
       "keyFiles": [
         "__init__.py",
-        "fetcher.py",
-        "indicators.py"
+        "backtest.py",
+        "data_utils.py"
       ]
     },
-    "frontend/node_modules": {
-      "path": "frontend/node_modules",
-      "purpose": "Dependencies",
-      "fileCount": 1,
-      "lastAccessed": 1772891469488,
-      "keyFiles": []
+    "backend/tests": {
+      "path": "backend/tests",
+      "purpose": "Test files",
+      "fileCount": 2,
+      "lastAccessed": 1773023110216,
+      "keyFiles": [
+        "__init__.py",
+        "test_strategy_engine.py"
+      ]
     },
     "frontend/src": {
       "path": "frontend/src",
       "purpose": "Source code",
       "fileCount": 2,
-      "lastAccessed": 1772891469488,
+      "lastAccessed": 1773023110217,
       "keyFiles": [
         "App.vue",
         "main.ts"
@@ -120,313 +140,23 @@
   },
   "hotPaths": [
     {
-      "path": "backend/routers/analysis.py",
-      "accessCount": 34,
-      "lastAccessed": 1772975827977,
+      "path": "backend/requirements.txt",
+      "accessCount": 3,
+      "lastAccessed": 1773023863657,
       "type": "file"
     },
     {
-      "path": "",
-      "accessCount": 32,
-      "lastAccessed": 1772940879581,
-      "type": "directory"
-    },
-    {
-      "path": "backend/services/indicators.py",
-      "accessCount": 24,
-      "lastAccessed": 1772956937586,
+      "path": "logs/frontend.log",
+      "accessCount": 1,
+      "lastAccessed": 1773024227946,
       "type": "file"
-    },
-    {
-      "path": "frontend/src/types/index.ts",
-      "accessCount": 19,
-      "lastAccessed": 1772956959754,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/strategy_engine.py",
-      "accessCount": 16,
-      "lastAccessed": 1772975812962,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/KlineChart.vue",
-      "accessCount": 16,
-      "lastAccessed": 1772976500586,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/services/api.ts",
-      "accessCount": 15,
-      "lastAccessed": 1772945674047,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/signal.py",
-      "accessCount": 15,
-      "lastAccessed": 1772956937531,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/backtest.py",
-      "accessCount": 15,
-      "lastAccessed": 1772956959615,
-      "type": "file"
-    },
-    {
-      "path": "backend/main.py",
-      "accessCount": 13,
-      "lastAccessed": 1772956874308,
-      "type": "file"
-    },
-    {
-      "path": "backend/models/schemas.py",
-      "accessCount": 13,
-      "lastAccessed": 1772956937697,
-      "type": "file"
-    },
-    {
-      "path": "frontend",
-      "accessCount": 12,
-      "lastAccessed": 1772940536459,
-      "type": "directory"
-    },
-    {
-      "path": "frontend/src/components/backtest/BacktestForm.vue",
-      "accessCount": 12,
-      "lastAccessed": 1772976553302,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/data_utils.py",
-      "accessCount": 11,
-      "lastAccessed": 1772944234713,
-      "type": "file"
-    },
-    {
-      "path": "backend/routers/backtest.py",
-      "accessCount": 11,
-      "lastAccessed": 1772948370730,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/PositionRecommendation.vue",
-      "accessCount": 11,
-      "lastAccessed": 1772976618630,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/App.vue",
-      "accessCount": 10,
-      "lastAccessed": 1772956890033,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/fetcher.py",
-      "accessCount": 10,
-      "lastAccessed": 1772956959665,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/backtest/BacktestMetrics.vue",
-      "accessCount": 9,
-      "lastAccessed": 1772976639288,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/InputForm.vue",
-      "accessCount": 8,
-      "lastAccessed": 1772940334389,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/views/BacktestView.vue",
-      "accessCount": 8,
-      "lastAccessed": 1772976553245,
-      "type": "file"
-    },
-    {
-      "path": "backend",
-      "accessCount": 7,
-      "lastAccessed": 1772941046003,
-      "type": "directory"
-    },
-    {
-      "path": "frontend/src",
-      "accessCount": 7,
-      "lastAccessed": 1772976676555,
-      "type": "directory"
     },
     {
       "path": "frontend/package.json",
-      "accessCount": 6,
-      "lastAccessed": 1772956874205,
-      "type": "file"
-    },
-    {
-      "path": "config/settings.py",
-      "accessCount": 6,
-      "lastAccessed": 1772956886468,
-      "type": "file"
-    },
-    {
-      "path": "backend/models/backtest_schemas.py",
-      "accessCount": 6,
-      "lastAccessed": 1772956959559,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/main.ts",
-      "accessCount": 5,
-      "lastAccessed": 1772956883945,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/backtest/BacktestEquityChart.vue",
-      "accessCount": 5,
-      "lastAccessed": 1772976637751,
-      "type": "file"
-    },
-    {
-      "path": "backend/routers/data.py",
-      "accessCount": 4,
-      "lastAccessed": 1772940344743,
-      "type": "file"
-    },
-    {
-      "path": "backend/requirements.txt",
-      "accessCount": 4,
-      "lastAccessed": 1772956874257,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/ResultCard.vue",
-      "accessCount": 4,
-      "lastAccessed": 1772976429828,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/IndicatorList.vue",
-      "accessCount": 4,
-      "lastAccessed": 1772976515984,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/backtest/BacktestTradeList.vue",
-      "accessCount": 4,
-      "lastAccessed": 1772976543087,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/components/backtest/BacktestDrawdownChart.vue",
-      "accessCount": 4,
-      "lastAccessed": 1772976596444,
-      "type": "file"
-    },
-    {
-      "path": "tests/unit/test_indicators.py",
-      "accessCount": 3,
-      "lastAccessed": 1772940528513,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/views/DashboardView.vue",
-      "accessCount": 3,
-      "lastAccessed": 1772976553353,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/__init__.py",
-      "accessCount": 2,
-      "lastAccessed": 1772940350985,
-      "type": "file"
-    },
-    {
-      "path": "frontend/src/router/index.ts",
-      "accessCount": 2,
-      "lastAccessed": 1772940575091,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/signal_adapter.py",
-      "accessCount": 2,
-      "lastAccessed": 1772940873254,
-      "type": "file"
-    },
-    {
-      "path": "report.md",
-      "accessCount": 2,
-      "lastAccessed": 1772956858006,
-      "type": "file"
-    },
-    {
-      "path": "setup.sh",
-      "accessCount": 2,
-      "lastAccessed": 1772956860577,
-      "type": "file"
-    },
-    {
-      "path": "fetch_etf_data.py",
-      "accessCount": 2,
-      "lastAccessed": 1772956860629,
-      "type": "file"
-    },
-    {
-      "path": "API_IMPLEMENTATION_SUMMARY.md",
-      "accessCount": 2,
-      "lastAccessed": 1772956860683,
-      "type": "file"
-    },
-    {
-      "path": "docs/ETF量化交易系统说明书.md",
-      "accessCount": 2,
-      "lastAccessed": 1772975813296,
-      "type": "file"
-    },
-    {
-      "path": "test_api.py",
       "accessCount": 1,
-      "lastAccessed": 1772936325856,
-      "type": "file"
-    },
-    {
-      "path": "test_fetcher.py",
-      "accessCount": 1,
-      "lastAccessed": 1772936325959,
-      "type": "file"
-    },
-    {
-      "path": "start.sh",
-      "accessCount": 1,
-      "lastAccessed": 1772936333135,
-      "type": "file"
-    },
-    {
-      "path": "backend/services/strategy_selector.py",
-      "accessCount": 1,
-      "lastAccessed": 1772940424063,
-      "type": "file"
-    },
-    {
-      "path": "backend/tests/__init__.py",
-      "accessCount": 1,
-      "lastAccessed": 1772940962771,
-      "type": "file"
-    },
-    {
-      "path": "backend/tests/test_strategy_engine.py",
-      "accessCount": 1,
-      "lastAccessed": 1772940963636,
+      "lastAccessed": 1773024230906,
       "type": "file"
     }
   ],
-  "userDirectives": [
-    {
-      "timestamp": 1772976737382,
-      "directive": "颜色配置：中国股市风格（红涨绿跌）- 红色 #ef5350 用于买入/多头/上涨/盈利，绿色 #26a69a 用于卖出/空头/下跌/亏损。SignalBadge 使用 danger=买入，success=卖出。已应用于所有交易相关组件。",
-      "context": "frontend/src/components/*.vue, frontend/src/styles/colors.ts",
-      "source": "explicit",
-      "priority": "high"
-    }
-  ]
+  "userDirectives": []
 }

@@ -14,6 +14,12 @@ if [ ! -d ".venv" ]; then
     exit 1
 fi
 
+# 检查前端依赖是否存在
+if [ ! -d "frontend/node_modules" ]; then
+    echo "错误: 前端依赖不存在，请先运行 ./setup.sh"
+    exit 1
+fi
+
 # 激活虚拟环境
 source .venv/bin/activate
 
